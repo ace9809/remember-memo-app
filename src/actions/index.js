@@ -84,9 +84,7 @@ const getLabelsStarted = () => ({
 
 const getLabelsSuccess = data => ({
   type: 'GET_LABELS_SUCCESS',
-  payload: {
-    ...data
-  }
+  payload: data
 });
 
 const getLabelStarted = () => ({
