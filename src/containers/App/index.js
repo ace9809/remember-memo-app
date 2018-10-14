@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Header from '../../containers/Header';
-import Label from '../../containers/Label';
+import LabelTab from '../../containers/LabelTab';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -35,7 +35,7 @@ class App extends Component {
         <Header />
         <ContentWrapper>
           <LableListWrapper>
-            <Label />
+            <LabelTab />
           </LableListWrapper>
           <MemoListWrapper>
             asf

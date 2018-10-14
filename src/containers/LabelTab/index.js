@@ -11,7 +11,7 @@ const LabelWrapper = styled.div`
   width: 100%:
 `;
 
-class Label extends Component {
+class LabelTab extends Component {
   componentDidMount() {
     this.props.getLabels();
     this.props.getMemos();
@@ -34,4 +34,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { getLabels, getMemos })(Label);
+export default connect(mapStateToProps, { getLabels, getMemos })(LabelTab);
