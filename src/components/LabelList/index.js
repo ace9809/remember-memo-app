@@ -3,9 +3,11 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Label from '../Label';
 
 const Wrapper = styled.div`
   width: 100%;
+  border: 1px solid #F3F1F1;
 `;
 
 class LabelList extends Component {
@@ -22,11 +24,13 @@ class LabelList extends Component {
         <div>전체({this.props.memos.length})</div>
         {
           this.props.labels.map(label => {
+            console.log('label', label);
             return(
-              <div
-                key={label._id}>
-                {label.title}({label.memos.length})
-              </div>
+              <Label
+                key={label._id}
+                label={label}
+              >
+              </Label>
             )
           })
         }
