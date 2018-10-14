@@ -80,7 +80,12 @@ class Modal extends Component {
 
   handleChange = (event) => {
     this.setState({value: event.target.value});
-  }
+  };
+
+  handleClick = () => {
+    this.props.addLabel(this.state.value);
+    this.props.closeModal();
+  };
 
   render() {
     return (
@@ -105,7 +110,7 @@ class Modal extends Component {
             <Button color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
               취소하기
             </Button>
-            <Button color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'}>
+            <Button color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.handleClick}>
               작성하기
             </Button>
           </ButtonWrapper>

@@ -2,6 +2,8 @@
  * Created by Ace on 2018. 10. 14..
  */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addLabel } from '../../actions';
 import styled from 'styled-components';
 import { FaEdit, FaTags } from 'react-icons/fa'
 import HeaderLogo from '../../assets/headerLogo.png';
@@ -76,15 +78,15 @@ class Header extends Component {
             <ColorFaEdit />
           </IconWrapper>
           <IconWrapper>
-            <ColorTags onClick={this.openModal}/>
+            <ColorTags onClick={this.openModal} />
           </IconWrapper>
         </NavWrapper>
         {
-          this.state.modalIsOpen && <Modal open={this.state.modalIsOpen} closeModal={this.closeModal}/>
+          this.state.modalIsOpen && <Modal open={this.state.modalIsOpen} addLabel={this.props.addLabel} closeModal={this.closeModal}/>
         }
       </HeaderWrapper>
     )
   }
 }
 
-export default Header;
+export default connect(null, { addLabel })(Header);
