@@ -3,8 +3,10 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
+import MemoTab from '../../containers/MemoTab';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -31,20 +33,21 @@ const MemoWrapper = styled.div`
 class App extends Component {
   render() {
     return (
-      <Wrapper>
-        <Header />
-        <ContentWrapper>
-          <LableListWrapper>
-            <LabelTab />
-          </LableListWrapper>
-          <MemoListWrapper>
-            asf
-          </MemoListWrapper>
-          <MemoWrapper>
-            asdf
-          </MemoWrapper>
-        </ContentWrapper>
-      </Wrapper>
+      <Router>
+          <Wrapper>
+            <Header />
+            <ContentWrapper>
+              <LableListWrapper>
+                <LabelTab />
+              </LableListWrapper>
+              <MemoListWrapper>
+                <Route path="/:id" component={MemoTab} />
+              </MemoListWrapper>
+              <MemoWrapper>
+              </MemoWrapper>
+            </ContentWrapper>
+          </Wrapper>
+      </Router>
     );
   }
 }

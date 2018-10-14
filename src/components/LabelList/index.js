@@ -4,11 +4,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 import Label from '../Label';
 
 const Wrapper = styled.div`
   width: 100%;
-  border: 1px solid #F3F1F1;
+  border-bottom: 1px solid #F3F1F1;
+  border-left: 1px solid #F3F1F1;
+`;
+
+const StyledLink = styled(Link)`
+  &:link {text-decoration: none; color: black;}
+  &:visited {text-decoration: none; color: black;}
+  &:active {text-decoration: none; color: black;}
+  &:hover {text-decoration: none; color: black;}
 `;
 
 class LabelList extends Component {
@@ -22,22 +31,30 @@ class LabelList extends Component {
     }
     return (
       <Wrapper>
-        <Label
-          title={'전체'}
-          memos={this.props.memos}
+        <StyledLink
+          to="/all"
         >
-        전체
-        </Label>
+          <Label
+            title={'전체'}
+            memos={this.props.memos}
+          >
+            전체
+          </Label>
+        </StyledLink>
         {
           this.props.labels.map(label => {
             console.log('label', label);
             return(
-              <Label
-                key={label._id}
-                title={label.title}
-                memos={label.memos}
+              <StyledLink
+                to={`/${label._id}`}
               >
-              </Label>
+                <Label
+                  key={label._id}
+                  title={label.title}
+                  memos={label.memos}
+                >
+                </Label>
+              </StyledLink>
             )
           })
         }
