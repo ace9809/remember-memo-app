@@ -22,14 +22,20 @@ class LabelList extends Component {
     }
     return (
       <Wrapper>
-        <div>전체({this.props.memos.length})</div>
+        <Label
+          title={'전체'}
+          memos={this.props.memos}
+        >
+        전체
+        </Label>
         {
           this.props.labels.map(label => {
             console.log('label', label);
             return(
               <Label
                 key={label._id}
-                label={label}
+                title={label.title}
+                memos={label.memos}
               >
               </Label>
             )
