@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Label from '../Label';
 
 const Wrapper = styled.div`
@@ -40,5 +41,15 @@ class LabelList extends Component {
 
   }
 }
+
+LabelList.propTypes = {
+  memos: PropTypes.array,
+  labels: PropTypes.array,
+};
+
+LabelList.defaultProps = {
+  memos: [],
+  labels: [],
+};
 
 export default LabelList;
