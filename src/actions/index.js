@@ -59,6 +59,18 @@ export const deleteLabel = (id) => dispatch => {
     })
 };
 
+export const getMemos = () => dispatch => {
+  dispatch(getMemosStarted());
+  return axios.get(`http://114.207.113.7:18888/memos`)
+    .then(res => {
+      console.log('res', res);
+      dispatch(getMemosSuccess(res.data));
+    }).catch(error => {
+      dispatch(apiFailure(error));
+      throw error;
+    })
+};
+
 
 const apiFailure = error => ({
   type: 'API_FAILURE',
@@ -118,4 +130,13 @@ const deleteLabelSuccess = data => ({
   payload: {
     ...data
   }
+});
+
+const getMemosStarted = () => ({
+  type: 'GET_MEMOS_STARTED',
+});
+
+const getMemosSuccess = data => ({
+  type: 'GET_MEMOS_SUCCESS',
+  payload: data
 });
