@@ -5,7 +5,9 @@
  * Created by Ace on 2018. 10. 13..
  */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { getMemos, getLabel} from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%:
@@ -22,27 +24,30 @@ class MemoTab extends Component {
   constructor(props) {
     super(props);
     this.state = {id : 'all'}
-
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.match.params.id !== state.id) {
-      return {
-        id: props.match.params.id,
-      };
+  componentDidUpdate(props){
+    if (this.props.match.params.id !== props.match.params.id) {
+      props.getLabel(this.props.match.params.id);
     }
-    return state.id;
   }
 
   render() {
+    console.log('props', this.props.label);
     return (
       <MemoWrapper>
         <LabelInfoWrapper>
-          아아아
+          {this.props.label.title}
         </LabelInfoWrapper>
       </MemoWrapper>
     );
   }
 }
 
-export default MemoTab;
+function mapStateToProps(state) {
+  return {
+    label: state.labels.label
+  }
+}
+
+export default connect(mapStateToProps, { getMemos, getLabel })(MemoTab);
