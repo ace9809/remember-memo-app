@@ -5,7 +5,8 @@
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  labels
+  labels,
+  memos
 });
 
 function labels(state = {labels: []}, action) {
@@ -21,6 +22,21 @@ function labels(state = {labels: []}, action) {
         labels: action.payload
       };
 
+  }
+  return state;
+}
+
+function memos(state = {memos: []}, action) {
+  switch(action.type) {
+    case 'GET_MEMOOS_STARTED':
+      return {
+        ...state
+      }
+    case 'GET_MEMOS_SUCCESS':
+      return {
+        ...state,
+        memos: action.payload
+      }
   }
   return state;
 }
