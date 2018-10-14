@@ -9,8 +9,7 @@ const rootReducer = combineReducers({
   memos
 });
 
-function labels(state = {labels: []}, action) {
-  console.log('action.type', action);
+function labels(state = {labels: [], label: {}}, action) {
   switch(action.type) {
     case 'GET_LABELS_STARTED':
       return {
@@ -26,14 +25,19 @@ function labels(state = {labels: []}, action) {
         ...state
       };
     case 'ADD_LABEL_SUCCESS':
-      console.log('return', {
-      ...state,
-      labels: [...state.labels, action.payload]
-    });
       return {
         ...state,
         labels: [...state.labels, action.payload]
       };
+    // case 'GET_LABEL_STARTED':
+    //   return {
+    //     ...state
+    //   };
+    // case 'GET_LABEL_SUCCESS':
+    //   return {
+    //     ...state,
+    //     labels: action.payload
+    //   };
 
   }
   return state;

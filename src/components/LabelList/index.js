@@ -43,7 +43,6 @@ class LabelList extends Component {
         </StyledLink>
         {
           this.props.labels.map(label => {
-            console.log('label', label);
             return(
               <StyledLink
                 to={`/${label._id}`}

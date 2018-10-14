@@ -63,7 +63,6 @@ export const getMemos = () => dispatch => {
   dispatch(getMemosStarted());
   return axios.get(`http://114.207.113.7:18888/memos`)
     .then(res => {
-      console.log('res', res);
       dispatch(getMemosSuccess(res.data));
     }).catch(error => {
       dispatch(apiFailure(error));
