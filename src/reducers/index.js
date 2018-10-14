@@ -29,15 +29,15 @@ function labels(state = {labels: [], label: {}}, action) {
         ...state,
         labels: [...state.labels, action.payload]
       };
-    // case 'GET_LABEL_STARTED':
-    //   return {
-    //     ...state
-    //   };
-    // case 'GET_LABEL_SUCCESS':
-    //   return {
-    //     ...state,
-    //     labels: action.payload
-    //   };
+    case 'GET_LABEL_STARTED':
+      return {
+        ...state
+      };
+    case 'GET_LABEL_SUCCESS':
+      return {
+        ...state,
+        label: action.payload
+      };
 
   }
   return state;
@@ -48,12 +48,12 @@ function memos(state = {memos: []}, action) {
     case 'GET_MEMOOS_STARTED':
       return {
         ...state
-      }
+      };
     case 'GET_MEMOS_SUCCESS':
       return {
         ...state,
         memos: action.payload
-      }
+      };
   }
   return state;
 }
