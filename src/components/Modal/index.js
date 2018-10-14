@@ -16,7 +16,7 @@ const ModalTitleWrapper = styled.div`
 
 const ModalContentWrapper = styled.div`
   margin-top: 15px;
-  font-color: gray;
+  color: #777777;
 `;
 
 const InputWrapper = styled.div`
