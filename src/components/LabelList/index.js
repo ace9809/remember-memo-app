@@ -19,11 +19,14 @@ class LabelList extends Component {
     }
     return (
       <Wrapper>
+        <div>전체({this.props.memos.length})</div>
         {
           this.props.labels.map(label => {
-            console.log('label', label);
             return(
-              <div key={label._id}>{label.title}{label.memos.length}</div>
+              <div
+                key={label._id}>
+                {label.title}({label.memos.length})
+              </div>
             )
           })
         }
