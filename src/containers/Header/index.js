@@ -1,10 +1,11 @@
 /**
  * Created by Ace on 2018. 10. 14..
  */
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FaEdit, FaTags } from 'react-icons/fa'
 import HeaderLogo from '../../assets/headerLogo.png';
+import Modal from '../../components/Modal';
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -47,22 +48,43 @@ const ColorTags = styled(FaTags)`
   height: 40px;
 `;
 
-const Header = () => {
-  return (
-    <HeaderWrapper>
-      <LogoWrapper>
-        <img src={HeaderLogo} height='50px' />
-      </LogoWrapper>
-      <NavWrapper>
-        <IconWrapper>
-          <ColorFaEdit />
-        </IconWrapper>
-        <IconWrapper>
-          <ColorTags />
-        </IconWrapper>
-      </NavWrapper>
-    </HeaderWrapper>
-  )
+class Header extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      modalIsOpen: false
+    };
+  }
+
+  openModal = () => {
+    this.setState({modalIsOpen: true});
+  };
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  };
+
+  render() {
+    return (
+      <HeaderWrapper>
+        <LogoWrapper>
+          <img src={HeaderLogo} height='50px' />
+        </LogoWrapper>
+        <NavWrapper>
+          <IconWrapper>
+            <ColorFaEdit />
+          </IconWrapper>
+          <IconWrapper>
+            <ColorTags onClick={this.openModal}/>
+          </IconWrapper>
+        </NavWrapper>
+        {
+          this.state.modalIsOpen && <Modal open={this.state.modalIsOpen} closeModal={this.closeModal}/>
+        }
+      </HeaderWrapper>
+    )
+  }
 }
 
 export default Header;
