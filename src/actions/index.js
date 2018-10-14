@@ -28,7 +28,7 @@ export const getLabels = () => dispatch => {
 
 export const getLabel = (id) => dispatch => {
   dispatch(getLabelStarted());
-  return axios.get(`http://114.207.113.7:18888/${id}`)
+  return axios.get(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
       dispatch(getLabelSuccess(res.data));
     }).catch(error => {
