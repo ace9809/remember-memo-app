@@ -21,6 +21,19 @@ function labels(state = {labels: []}, action) {
         ...state,
         labels: action.payload
       };
+    case 'ADD_LABEL_STARTED':
+      return {
+        ...state
+      };
+    case 'ADD_LABEL_SUCCESS':
+      console.log('return', {
+      ...state,
+      labels: [...state.labels, action.payload]
+    });
+      return {
+        ...state,
+        labels: [...state.labels, action.payload]
+      };
 
   }
   return state;
