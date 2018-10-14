@@ -11,7 +11,21 @@ const Wrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+`;
+
+const LableListWrapper = styled.div`
+  flex-grow: 0;
+`;
+
+const MemoListWrapper = styled.div`
+  flex-grow: 1;
+`;
+
+const MemoWrapper = styled.div`
+  flex-grow: 2;
 `;
 
 class App extends Component {
@@ -20,7 +34,15 @@ class App extends Component {
       <Wrapper>
         <Header />
         <ContentWrapper>
-          <Label />
+          <LableListWrapper>
+            <Label />
+          </LableListWrapper>
+          <MemoListWrapper>
+            asf
+          </MemoListWrapper>
+          <MemoWrapper>
+            asdf
+          </MemoWrapper>
         </ContentWrapper>
       </Wrapper>
     );
