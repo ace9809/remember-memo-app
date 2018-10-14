@@ -10,12 +10,18 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
+const ContentWrapper = styled.div`
+  display: flex;
+`;
+
 class App extends Component {
   render() {
     return (
       <Wrapper>
         <Header />
-        <Label />
+        <ContentWrapper>
+          <Label />
+        </ContentWrapper>
       </Wrapper>
     );
   }
