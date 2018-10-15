@@ -25,7 +25,7 @@ const LableListWrapper = styled.div`
 `;
 
 const MemoListWrapper = styled.div`
-  flex-grow: 1;
+  flex-grow: 0.5;
 `;
 
 const MemoWrapper = styled.div`
