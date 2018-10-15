@@ -44,20 +44,9 @@ class App extends Component {
               </LableListWrapper>
               <MemoListWrapper>
                 <Route
-                  path={'/all'}
-                  render={props => <MemoTab id={'all'} />}
+                  path="/:id"
+                  component={MemoTab}
                 />
-                {
-                  this.props.labels.map(label => {
-                    return (
-                      <Route
-                        key={label._id}
-                        path={`/${label._id}`}
-                        render={props => <MemoTab id={label._id} />}
-                      />
-                    )
-                  })
-                }
               </MemoListWrapper>
               <MemoWrapper>
               </MemoWrapper>

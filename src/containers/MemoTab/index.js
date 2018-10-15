@@ -36,11 +36,13 @@ const CountWrapper = styled.div`
 
 class MemoTab extends Component {
 
-  componentDidMount() {
-    if (this.props.id === 'all') {
-      this.props.getMemos();
-    } else {
-      this.props.getLabel(this.props.id);
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      if (this.props.match.params.id === 'all') {
+        this.props.getMemos();
+      } else {
+        this.props.getLabel(this.props.match.params.id);
+      }
     }
   }
 
