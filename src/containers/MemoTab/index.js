@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import MemoList from '../../components/MemoList';
 import { getMemos, getLabel} from '../../actions';
 
 const MemoWrapper = styled.div`
@@ -20,6 +21,10 @@ const LabelInfoWrapper = styled.div`
   border-bottom: 1px solid #F3F1F1;
 `;
 
+const MemoListWrapper = styled.div`
+  border-bottom: 1px solid #F3F1F1;
+`;
+
 const TitleWrapper = styled.div`
   margin-top: 15px;
   font-size: 20px;
@@ -27,7 +32,7 @@ const TitleWrapper = styled.div`
 
 const CountWrapper = styled.div`
   color: #a6a6a6;
-`
+`;
 
 class MemoTab extends Component {
 
@@ -44,15 +49,23 @@ class MemoTab extends Component {
       title,
       memos
     } = this.props.label;
+    console.log('this.props.label', this.props.label);
     return (
       <MemoWrapper>
         <LabelInfoWrapper>
           <TitleWrapper>
-            {title}
+            {
+              title ? <div>{title}</div> : <div>전체</div>
+            }
           </TitleWrapper>
           <CountWrapper>
           </CountWrapper>
         </LabelInfoWrapper>
+        <MemoListWrapper>
+          {
+            memos ? <MemoList memos={memos} /> : <MemoList memos={this.props.memos} />
+          }
+        </MemoListWrapper>
       </MemoWrapper>
     );
   }
