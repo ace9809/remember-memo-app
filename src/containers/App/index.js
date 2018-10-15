@@ -4,8 +4,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, IndexRoute } from "react-router-dom";
-import { connect } from 'react-redux';
-import { getLabels, getMemos } from '../../actions';
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
 import MemoTab from '../../containers/MemoTab';
@@ -57,10 +55,4 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    labels: state.labels.labels
-  }
-}
-
-export default connect(mapStateToProps, { getLabels, getMemos })(App);
+export default App;
