@@ -6,9 +6,8 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
-import Label from '../Label';
+import Memo from '../Memo';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,11 +37,10 @@ class MemoList extends Component {
         {
           this.props.memos.map((memo, index) => {
             return(
-              <div
+              <Memo
+                memo={memo}
                 key={index}
-              >
-                {memo.title}
-              </div>
+              />
             )
           })
         }
