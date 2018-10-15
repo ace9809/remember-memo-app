@@ -28,7 +28,7 @@ class LabelTab extends Component {
 function mapStateToProps(state) {
   return {
     labels: state.labels.labels,
-    memos: state.labels.memos
+    memos: state.memos.memos
   }
 }
 

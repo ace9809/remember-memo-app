@@ -75,7 +75,7 @@ class MemoTab extends Component {
 function mapStateToProps(state) {
   return {
     label: state.labels.label,
-    memos: state.labels.memos
+    memos: state.memos.memos
   }
 }
 

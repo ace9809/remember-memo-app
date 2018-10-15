@@ -5,10 +5,11 @@
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  labels
+  labels,
+  memos
 });
 
-function labels(state = {labels: [], label: {}, memos: []}, action) {
+function labels(state = {labels: [], label: {}}, action) {
   console.log(action);
   switch(action.type) {
     case 'GET_LABELS_STARTED':
@@ -38,7 +39,13 @@ function labels(state = {labels: [], label: {}, memos: []}, action) {
         ...state,
         label: action.payload
       };
+  }
+  return state;
+}
 
+function memos(state = {memos: []}, action) {
+  console.log(action);
+  switch(action.type) {
     case 'GET_MEMOOS_STARTED':
       return {
         ...state
@@ -46,8 +53,7 @@ function labels(state = {labels: [], label: {}, memos: []}, action) {
     case 'GET_MEMOS_SUCCESS':
       return {
         ...state,
-        memos: action.payload,
-        label: {}
+        memos: action.payload
       };
 
   }
