@@ -33,10 +33,8 @@ class MemoTab extends Component {
 
   componentDidMount() {
     if (this.props.id === 'all') {
-      console.log('하1');
       this.props.getMemos();
     } else {
-      console.log('하2');
       this.props.getLabel(this.props.id);
     }
   }
@@ -63,7 +61,7 @@ class MemoTab extends Component {
 function mapStateToProps(state) {
   return {
     label: state.labels.label,
-    memos: state.memos.memos
+    memos: state.labels.memos
   }
 }
 

@@ -70,8 +70,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    labels: state.labels.labels,
-    memos: state.memos.memos
+    labels: state.labels.labels
   }
 }
 
