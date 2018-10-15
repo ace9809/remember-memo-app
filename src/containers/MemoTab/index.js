@@ -51,7 +51,6 @@ class MemoTab extends Component {
       title,
       memos
     } = this.props.label;
-    console.log('this.props.label', this.props.label);
     return (
       <MemoWrapper>
         <LabelInfoWrapper>
