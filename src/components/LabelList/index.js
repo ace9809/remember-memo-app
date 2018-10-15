@@ -46,9 +46,9 @@ class LabelList extends Component {
             return(
               <StyledLink
                 to={`/${label._id}`}
+                key={label._id}
               >
                 <Label
-                  key={label._id}
                   title={label.title}
                   memos={label.memos}
                 >
