@@ -36,8 +36,7 @@ function labels(state = {labels: [], label: {}, memos: []}, action) {
     case 'GET_LABEL_SUCCESS':
       return {
         ...state,
-        label: action.payload,
-        memos: action.payload.memos
+        label: action.payload
       };
 
     case 'GET_MEMOOS_STARTED':
