@@ -2,6 +2,8 @@
  * Created by Ace on 2018. 10. 14..
  */
 import React from 'react';
+import Moment from 'react-moment';
+import 'moment-timezone';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -44,7 +46,9 @@ const Header = props => {
         {title}
       </TitleWrapper>
       <CreatedWrapper>
-        {createdAt}
+        <Moment format="YYYY.MM.DD">
+          {createdAt}
+        </Moment>
       </CreatedWrapper>
       <ContentWrapper>
         {content}
