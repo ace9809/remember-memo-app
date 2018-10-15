@@ -56,19 +56,22 @@ class MemoTab extends Component {
         <LabelInfoWrapper>
           <TitleWrapper>
             {
-              title ? <div>{title}</div> : <div>전체</div>
+              this.props.match.params.id === 'all' ? <div>전체</div> : <div>{title}</div>
             }
           </TitleWrapper>
           <CountWrapper>
+            {
+              this.props.match.params.id === 'all' ? this.props.memos && <div>{this.props.memos.length}개의 노트</div> : memos && <div>{memos.length}개의 노트</div>
+            }
           </CountWrapper>
         </LabelInfoWrapper>
         <MemoListWrapper>
           {
-            memos ? <MemoList memos={memos} /> : <MemoList memos={this.props.memos} />
+            this.props.match.params.id === 'all' ? <MemoList memos={this.props.memos} /> : memos && <MemoList memos={memos} />
           }
         </MemoListWrapper>
       </MemoWrapper>
-    );
+    )
   }
 }
 
