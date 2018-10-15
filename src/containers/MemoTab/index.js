@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { MdMenu, MdFilterList } from 'react-icons/md'
+import { MdMenu } from 'react-icons/md'
 import MemoList from '../../components/MemoList';
 import { getMemos, getLabel} from '../../actions';
 
@@ -86,9 +86,6 @@ class MemoTab extends Component {
               }
             </CountWrapper>
             <IconNavWrapper>
-              <IconWrapper>
-                <MdFilterList />
-              </IconWrapper>
               <IconWrapper>
                 <MdMenu />
               </IconWrapper>
