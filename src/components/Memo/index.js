@@ -18,19 +18,28 @@ const Wrapper = styled.div`
 `;
 
 const TitleWrapper = styled.div`
+  display:inline-block;
+  width: 300px;
+  height: 30px;
   font-weight: bold;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
 `;
 
 const CreatedWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-size: 10px;
+  color: #a6a6a6;
 `;
 
 const ContentWrapper = styled.div`
+  width: 300px;
+  height: 55px;
   margin: 20px 0 10px 0;
   padding: 5px 0;
-  height: 55px;
   overflow: hidden;
 `;
 
