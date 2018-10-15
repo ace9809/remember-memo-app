@@ -3,7 +3,9 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, IndexRoute } from "react-router-dom";
+import { connect } from 'react-redux';
+import { getLabels, getMemos } from '../../actions';
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
 import MemoTab from '../../containers/MemoTab';
@@ -41,7 +43,21 @@ class App extends Component {
                 <LabelTab />
               </LableListWrapper>
               <MemoListWrapper>
-                <Route path="/:id" component={MemoTab} />
+                <Route
+                  path={'/all'}
+                  render={props => <MemoTab id={'all'} />}
+                />
+                {
+                  this.props.labels.map(label => {
+                    return (
+                      <Route
+                        key={label._id}
+                        path={`/${label._id}`}
+                        render={props => <MemoTab id={label._id} />}
+                      />
+                    )
+                  })
+                }
               </MemoListWrapper>
               <MemoWrapper>
               </MemoWrapper>
@@ -52,4 +68,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    labels: state.labels.labels,
+    memos: state.memos.memos
+  }
+}
+
+export default connect(mapStateToProps, { getLabels, getMemos })(App);

@@ -11,33 +11,49 @@ import { getMemos, getLabel} from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%:
-  margin-right: 10px;
 `;
 
 const LabelInfoWrapper = styled.div`
   height: 140px;
+  padding: 10px;
   border-left: 1px solid #F3F1F1;
   border-bottom: 1px solid #F3F1F1;
 `;
 
-class MemoTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {id : 'all'}
-  }
+const TitleWrapper = styled.div`
+  margin-top: 15px;
+  font-size: 20px;
+`;
 
-  componentDidUpdate(props){
-    if (this.props.match.params.id !== props.match.params.id) {
-      props.getLabel(this.props.match.params.id);
+const CountWrapper = styled.div`
+  color: #a6a6a6;
+`
+
+class MemoTab extends Component {
+
+  componentDidMount() {
+    if (this.props.id === 'all') {
+      console.log('하1');
+      this.props.getMemos();
+    } else {
+      console.log('하2');
+      this.props.getLabel(this.props.id);
     }
   }
 
   render() {
-    console.log('props', this.props.label);
+    const {
+      title,
+      memos
+    } = this.props.label;
     return (
       <MemoWrapper>
         <LabelInfoWrapper>
-          {this.props.label.title}
+          <TitleWrapper>
+            {title}
+          </TitleWrapper>
+          <CountWrapper>
+          </CountWrapper>
         </LabelInfoWrapper>
       </MemoWrapper>
     );
@@ -46,7 +62,8 @@ class MemoTab extends Component {
 
 function mapStateToProps(state) {
   return {
-    label: state.labels.label
+    label: state.labels.label,
+    memos: state.memos.memos
   }
 }
 
