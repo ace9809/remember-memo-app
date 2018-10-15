@@ -16,7 +16,7 @@ const MemoWrapper = styled.div`
 
 const LabelInfoWrapper = styled.div`
   height: 140px;
-  padding: 10px;
+  padding: 20px;
   border-left: 1px solid #F3F1F1;
   border-bottom: 1px solid #F3F1F1;
 `;
@@ -31,7 +31,9 @@ const TitleWrapper = styled.div`
 `;
 
 const CountWrapper = styled.div`
+  margin-top: 80px;
   color: #a6a6a6;
+  font-size: 15px;
 `;
 
 class MemoTab extends Component {
