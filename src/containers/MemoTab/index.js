@@ -7,7 +7,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { MdMenu } from 'react-icons/md'
 import MemoList from '../../components/MemoList';
 import { getMemos, getLabel} from '../../actions';
 
@@ -41,21 +40,21 @@ const FooterWrapper = styled.div`
   margin-top: 80px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const CountWrapper = styled.div`
-  display: flex;
-  align-items: center;
   color: #a6a6a6;
   font-size: 15px;
 `;
 
-const IconNavWrapper = styled.div`
+const ButtonNavWrapper = styled.div`
   display: flex;
-  align-items: center;
 `;
 
-const IconWrapper = styled.div`
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
   margin-left: 20px;
   font-size: 25px;
 `;
@@ -91,11 +90,18 @@ class MemoTab extends Component {
                 this.props.match.params.id === 'all' ? this.props.memos && <div>{this.props.memos.length}개의 노트</div> : memos && <div>{memos.length}개의 노트</div>
               }
             </CountWrapper>
-            <IconNavWrapper>
-              <IconWrapper>
-                <MdMenu />
-              </IconWrapper>
-            </IconNavWrapper>
+            <ButtonNavWrapper>
+              <ButtonWrapper>
+                <button>
+                  메모 수정
+                </button>
+              </ButtonWrapper>
+              <ButtonWrapper>
+                <button>
+                  메모 삭제
+                </button>
+              </ButtonWrapper>
+            </ButtonNavWrapper>
           </FooterWrapper>
         </LabelInfoWrapper>
         <MemoListWrapper>
