@@ -29,6 +29,12 @@ const MemoListWrapper = styled.div`
 const TitleWrapper = styled.div`
   margin-top: 15px;
   font-size: 20px;
+  width: 300px;
+  height: 30px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
 `;
 
 const FooterWrapper = styled.div`
@@ -76,7 +82,7 @@ class MemoTab extends Component {
         <LabelInfoWrapper>
           <TitleWrapper>
             {
-              this.props.match.params.id === 'all' ? <div>전체</div> : <div>{title}</div>
+              this.props.match.params.id === 'all' ? '전체' : {title}
             }
           </TitleWrapper>
           <FooterWrapper>
