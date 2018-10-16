@@ -50,7 +50,7 @@ export const updateLabel = (id) => dispatch => {
 
 export const deleteLabel = (id) => dispatch => {
   dispatch(deleteLabelStarted());
-  return axios.delete(`http://114.207.113.7:18888/${id}`)
+  return axios.delete(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
       dispatch(deleteLabelSuccess(res.data));
     }).catch(error => {
