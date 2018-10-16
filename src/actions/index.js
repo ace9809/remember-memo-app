@@ -48,10 +48,11 @@ export const updateLabel = (id) => dispatch => {
     })
 };
 
-export const deleteLabel = (id) => dispatch => {
+export const deleteLabel = (id, title) => dispatch => {
   dispatch(deleteLabelStarted());
-  return axios.delete(`http://114.207.113.7:18888/labels/${id}`)
-    .then(res => {
+  return axios.delete(`http://114.207.113.7:18888/labels/${id}`, {
+    title : title
+  }).then(res => {
       dispatch(deleteLabelSuccess(res.data));
     }).catch(error => {
       dispatch(apiFailure(error));
