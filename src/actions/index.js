@@ -37,10 +37,11 @@ export const getLabel = (id) => dispatch => {
     })
 };
 
-export const updateLabel = (id) => dispatch => {
+export const updateLabel = (id, title) => dispatch => {
   dispatch(updateLabelStarted());
-  return axios.put(`http://114.207.113.7:18888/${id}`)
-    .then(res => {
+  return axios.put(`http://114.207.113.7:18888/labels/${id}`, {
+    title : title
+  }).then(res => {
       dispatch(updateLabelSuccess(res.data));
     }).catch(error => {
       dispatch(apiFailure(error));
@@ -48,11 +49,10 @@ export const updateLabel = (id) => dispatch => {
     })
 };
 
-export const deleteLabel = (id, title) => dispatch => {
+export const deleteLabel = (id) => dispatch => {
   dispatch(deleteLabelStarted());
-  return axios.delete(`http://114.207.113.7:18888/labels/${id}`, {
-    title : title
-  }).then(res => {
+  return axios.delete(`http://114.207.113.7:18888/labels/${id}`)
+    .then(res => {
       dispatch(deleteLabelSuccess(res.data));
     }).catch(error => {
       dispatch(apiFailure(error));
