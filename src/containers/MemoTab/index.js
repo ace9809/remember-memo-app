@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import MemoList from '../../components/MemoList';
-import { getMemos, getLabel} from '../../actions';
+import { getMemos, getLabel, deleteLabel} from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%:
@@ -71,10 +71,14 @@ class MemoTab extends Component {
     }
   }
 
+  deleteLabel = () => {
+    this.props.deleteLabel(this.props.label._id);
+  };
+
   render() {
     const {
       title,
-      memos
+      memos,
     } = this.props.label;
     return (
       <MemoWrapper>
@@ -97,7 +101,7 @@ class MemoTab extends Component {
                 </button>
               </ButtonWrapper>
               <ButtonWrapper>
-                <button>
+                <button onClick={this.deleteLabel}>
                   메모 삭제
                 </button>
               </ButtonWrapper>
@@ -121,4 +125,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMemos, getLabel })(MemoTab);
+export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel })(MemoTab);
