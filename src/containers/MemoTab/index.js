@@ -81,13 +81,15 @@ class MemoTab extends Component {
     this.props.updateLabel(this.props.match.params.id, value);
   };
 
-
+  componentDidMount() {
+    if (this.props.match.params.id !== 'all') {
+      this.props.getLabel(this.props.match.params.id);
+    }
+  }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
-      if (this.props.match.params.id === 'all') {
-        this.props.getMemos();
-      } else {
+      if (this.props.match.params.id !== 'all') {
         this.props.getLabel(this.props.match.params.id);
       }
     }
