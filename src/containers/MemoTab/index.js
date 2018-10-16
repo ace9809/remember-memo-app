@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import MemoList from '../../components/MemoList';
 import { getMemos, getLabel, deleteLabel} from '../../actions';
+import Modal from '../../components/Modal';
 
 const MemoWrapper = styled.div`
   width: 100%:
@@ -60,6 +61,21 @@ const ButtonWrapper = styled.div`
 `;
 
 class MemoTab extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      modalIsOpen: false
+    };
+  }
+
+  openModal = () => {
+    this.setState({modalIsOpen: true});
+  };
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  };
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
@@ -96,7 +112,7 @@ class MemoTab extends Component {
             </CountWrapper>
             <ButtonNavWrapper>
               <ButtonWrapper>
-                <button>
+                <button onClick={this.openModal}>
                   메모 수정
                 </button>
               </ButtonWrapper>
@@ -113,6 +129,18 @@ class MemoTab extends Component {
             this.props.match.params.id === 'all' ? <MemoList memos={this.props.memos} /> : memos && <MemoList memos={memos} />
           }
         </MemoListWrapper>
+        {
+          this.state.modalIsOpen &&
+          <Modal
+            open={this.state.modalIsOpen}
+            addLabel={this.props.addLabel}
+            closeModal={this.closeModal}
+            title="라벨 이름 변경"
+            content="라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 15자릿수 까지 지정할 수 있습니다."
+            leftButtonText="취소하기"
+            rightButtonText="작성하기"
+          />
+        }
       </MemoWrapper>
     )
   }
