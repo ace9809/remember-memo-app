@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import MemoList from '../../components/MemoList';
-import { getMemos, getLabel, deleteLabel} from '../../actions';
+import { getMemos, getLabel, deleteLabel, updateLabel} from '../../actions';
 import Modal from '../../components/Modal';
 
 const MemoWrapper = styled.div`
@@ -158,4 +158,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel })(MemoTab);
+export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel })(MemoTab);
