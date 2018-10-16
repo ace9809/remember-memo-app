@@ -95,6 +95,7 @@ class MemoTab extends Component {
 
   deleteLabel = () => {
     this.props.deleteLabel(this.props.label._id);
+    this.props.history.push('/all');
   };
 
   render() {
