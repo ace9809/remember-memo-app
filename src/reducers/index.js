@@ -49,6 +49,19 @@ function labels(state = {labels: [], label: {}}, action) {
         labels: state.labels.filter(label => label._id !== action.payload._id),
         label: {}
       };
+    case 'UPDATE_LABEL_STARTED':
+      return {
+        ...state
+      };
+    case 'UPDATE_LABEL_SUCCESS':
+      return {
+        ...state,
+        labels: state.labels.map(
+          (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
+            : label
+        ),
+        label: {}
+      };
   }
   return state;
 }
