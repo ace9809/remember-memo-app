@@ -39,6 +39,16 @@ function labels(state = {labels: [], label: {}}, action) {
         ...state,
         label: action.payload
       };
+    case 'DELETE_LABEL_STARTED':
+      return {
+        ...state
+      };
+    case 'DELETE_LABEL_SUCCESS':
+      return {
+        ...state,
+        labels: state.labels.filter(label => label._id !== action.payload._id),
+        label: {}
+      };
   }
   return state;
 }
