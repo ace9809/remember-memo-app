@@ -88,6 +88,12 @@ class Modal extends Component {
   };
 
   render() {
+    const {
+      title,
+      content,
+      leftButtonText,
+      rightButtonText
+    } = this.props;
     return (
       <ReactModal
         isOpen={this.props.open}
@@ -97,21 +103,20 @@ class Modal extends Component {
       >
         <ModalWrapper>
           <ModalTitleWrapper>
-            새 라벨 만들기
+            {title}
           </ModalTitleWrapper>
           <ModalContentWrapper>
-            라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. <br />
-            라벨은 최대 15자릿수 까지 지정할 수 있습니다.
+            {content}
           </ModalContentWrapper>
           <InputWrapper>
             <Input type="text" maxLength="15" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
           </InputWrapper>
           <ButtonWrapper>
             <Button color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
-              취소하기
+              {leftButtonText}
             </Button>
             <Button color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.handleClick}>
-              작성하기
+              {rightButtonText}
             </Button>
           </ButtonWrapper>
         </ModalWrapper>
