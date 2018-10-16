@@ -82,7 +82,7 @@ class MemoTab extends Component {
         <LabelInfoWrapper>
           <TitleWrapper>
             {
-              this.props.match.params.id === 'all' ? '전체' : {title}
+              this.props.match.params.id === 'all' ? '전체' : title
             }
           </TitleWrapper>
           <FooterWrapper>
