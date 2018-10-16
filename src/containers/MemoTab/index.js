@@ -113,12 +113,12 @@ class MemoTab extends Component {
             <ButtonNavWrapper>
               <ButtonWrapper>
                 <button onClick={this.openModal}>
-                  메모 수정
+                  라벨 수정
                 </button>
               </ButtonWrapper>
               <ButtonWrapper>
                 <button onClick={this.deleteLabel}>
-                  메모 삭제
+                  라벨 삭제
                 </button>
               </ButtonWrapper>
             </ButtonNavWrapper>
