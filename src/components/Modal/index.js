@@ -54,6 +54,7 @@ const Button = styled.button`
 
 const customStyles = {
   content : {
+    width                 : '390px',
     top                   : '50%',
     left                  : '50%',
     right                 : 'auto',
