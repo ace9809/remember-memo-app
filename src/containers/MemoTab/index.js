@@ -144,7 +144,7 @@ class MemoTab extends Component {
             title="라벨 이름 변경"
             content="라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 15자릿수 까지 지정할 수 있습니다."
             leftButtonText="취소하기"
-            rightButtonText="작성하기"
+            rightButtonText="변경하기"
           />
         }
       </MemoWrapper>
