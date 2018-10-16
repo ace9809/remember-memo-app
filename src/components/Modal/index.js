@@ -84,7 +84,7 @@ class Modal extends Component {
   };
 
   handleClick = () => {
-    this.props.callbackFunc(this.state.value);
+    this.props.submitModal(this.state.value);
     this.props.closeModal();
   };
 

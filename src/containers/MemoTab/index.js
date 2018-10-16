@@ -77,6 +77,11 @@ class MemoTab extends Component {
     this.setState({modalIsOpen: false});
   };
 
+  submitModal = (value) => {
+  };
+
+
+
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
       if (this.props.match.params.id === 'all') {
@@ -133,7 +138,7 @@ class MemoTab extends Component {
           this.state.modalIsOpen &&
           <Modal
             open={this.state.modalIsOpen}
-            addLabel={this.props.addLabel}
+            submitModal={this.submitModal}
             closeModal={this.closeModal}
             title="라벨 이름 변경"
             content="라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 15자릿수 까지 지정할 수 있습니다."
