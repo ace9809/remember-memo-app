@@ -78,6 +78,7 @@ class MemoTab extends Component {
   };
 
   submitModal = (value) => {
+    this.props.updateLabel(this.props.match.params.id, value);
   };
 
 
