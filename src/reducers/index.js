@@ -60,7 +60,7 @@ function labels(state = {labels: [], label: {}}, action) {
           (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
             : label
         ),
-        label: {}
+        label: action.payload
       };
   }
   return state;
