@@ -65,7 +65,8 @@ class MemoTab extends Component {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      id: 'all'
     };
   }
 
@@ -81,18 +82,14 @@ class MemoTab extends Component {
     this.props.updateLabel(this.props.match.params.id, value);
   };
 
-  componentDidMount() {
-    if (this.props.match.params.id !== 'all') {
-      this.props.getLabel(this.props.match.params.id);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params.id !== prevProps.match.params.id) {
-      if (this.props.match.params.id !== 'all') {
-        this.props.getLabel(this.props.match.params.id);
+  static getDerivedStateFromProps(props, state) {
+    if (state.id !== props.match.params.id) {
+      if (props.match.params.id !== 'all') {
+        props.getLabel(props.match.params.id);
       }
     }
+
+    return null;
   }
 
   deleteLabel = () => {
