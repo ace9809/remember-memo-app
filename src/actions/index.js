@@ -71,6 +71,11 @@ export const getMemos = () => dispatch => {
     })
 };
 
+export const getCurrentLabel = id => ({
+  type: 'GET_CURRENT_LABEL',
+  payload: id
+});
+
 
 const apiFailure = error => ({
   type: 'API_FAILURE',

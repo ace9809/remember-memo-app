@@ -4,6 +4,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+import { getCurrentLabel } from '../../actions';
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
 import LabelInfoTab from '../../containers/LabelInfoTab';
@@ -48,6 +50,10 @@ class App extends Component {
                 />
               </LabelInfoTabWrapper>
               <MemoWrapper>
+                <Route
+                  path={`/${this.props.currentLabel}/:id`}
+                  component={LabelInfoTab}
+                />
               </MemoWrapper>
             </ContentWrapper>
           </Wrapper>
@@ -56,4 +62,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    currentLabel: state.labels.currentLabel
+  }
+}
+
+export default connect(mapStateToProps, { getCurrentLabel })(App);
