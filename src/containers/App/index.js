@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
-import MemoTab from '../../containers/MemoTab';
+import LabelInfoTab from '../../containers/LabelInfoTab';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -23,7 +23,7 @@ const LableListWrapper = styled.div`
   flex-grow: 0;
 `;
 
-const MemoListWrapper = styled.div`
+const LabelInfoTabWrapper = styled.div`
   flex-grow: 0.5;
 `;
 
@@ -41,12 +41,12 @@ class App extends Component {
               <LableListWrapper>
                 <LabelTab />
               </LableListWrapper>
-              <MemoListWrapper>
+              <LabelInfoTabWrapper>
                 <Route
                   path="/:id"
-                  component={MemoTab}
+                  component={LabelInfoTab}
                 />
-              </MemoListWrapper>
+              </LabelInfoTabWrapper>
               <MemoWrapper>
               </MemoWrapper>
             </ContentWrapper>

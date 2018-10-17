@@ -11,7 +11,7 @@ import MemoList from '../../components/MemoList';
 import { getMemos, getLabel, deleteLabel, updateLabel} from '../../actions';
 import Modal from '../../components/Modal';
 
-const MemoWrapper = styled.div`
+const LabelInfoTabWrapper = styled.div`
   width: 100%:
   height: 100%;
   border-right: 1px solid #F3F1F1;
@@ -62,7 +62,7 @@ const ButtonWrapper = styled.div`
   font-size: 25px;
 `;
 
-class MemoTab extends Component {
+class LabelInfoTab extends Component {
   constructor() {
     super();
 
@@ -107,7 +107,7 @@ class MemoTab extends Component {
       memos,
     } = this.props.label;
     return (
-      <MemoWrapper>
+      <LabelInfoTabWrapper>
         <LabelInfoWrapper>
           <TitleWrapper>
             {
@@ -151,7 +151,7 @@ class MemoTab extends Component {
             rightButtonText="변경하기"
           />
         }
-      </MemoWrapper>
+      </LabelInfoTabWrapper>
     )
   }
 }
@@ -163,4 +163,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel })(MemoTab);
+export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel })(LabelInfoTab);
