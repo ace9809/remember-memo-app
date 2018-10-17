@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, IndexRoute } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
 import MemoTab from '../../containers/MemoTab';
@@ -45,6 +45,7 @@ class App extends Component {
                   path="/:id"
                   component={MemoTab}
                 />
+                <Redirect from='/' to='/all'/>
               </MemoListWrapper>
               <MemoWrapper>
               </MemoWrapper>
