@@ -44,10 +44,15 @@ class MemoList extends Component {
         {
           this.props.memos.map((memo, index) => {
             return(
-              <Memo
-                memo={memo}
-                key={index}
-              />
+              <StyledLink
+                to={`/${memo._id}`}
+                key={memo._id}
+              >
+                <Memo
+                  memo={memo}
+                  key={index}
+                />
+              </StyledLink>
             )
           })
         }
