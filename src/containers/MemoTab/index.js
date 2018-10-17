@@ -89,7 +89,9 @@ class MemoTab extends Component {
       }
     }
 
-    return null;
+    return {
+      id: props.match.params.id
+    };
   }
 
   deleteLabel = () => {
