@@ -45,7 +45,6 @@ class App extends Component {
                   path="/:id"
                   component={MemoTab}
                 />
-                <Redirect from='/' to='/all'/>
               </MemoListWrapper>
               <MemoWrapper>
               </MemoWrapper>
