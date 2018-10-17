@@ -84,6 +84,15 @@ function memos(state = {memos: []}, action) {
         ...state,
         memos: action.payload
       };
+    case 'ADD_MEMO_STARTED':
+      return {
+        ...state
+      };
+    case 'ADD_MEMO_SUCCESS':
+      return {
+        ...state,
+        memos: [...state.memos, action.payload]
+      };
 
   }
   return state;

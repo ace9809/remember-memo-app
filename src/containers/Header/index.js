@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addLabel } from '../../actions';
+import { addLabel, addMemo } from '../../actions';
 import styled from 'styled-components';
 import { FaEdit, FaTags } from 'react-icons/fa'
 import HeaderLogo from '../../assets/headerLogo.png';
@@ -59,6 +59,10 @@ class Header extends Component {
     };
   }
 
+  addMemoOnClick = () => {
+    this.props.addMemo();
+  };
+
   openModal = () => {
     this.setState({modalIsOpen: true});
   };
@@ -79,7 +83,7 @@ class Header extends Component {
         </LogoWrapper>
         <NavWrapper>
           <IconWrapper>
-            <ColorFaEdit />
+            <ColorFaEdit onClick={this.addMemoOnClick} />
           </IconWrapper>
           <IconWrapper>
             <ColorTags onClick={this.openModal} />
@@ -102,4 +106,4 @@ class Header extends Component {
   }
 }
 
-export default connect(null, { addLabel })(Header);
+export default connect(null, { addLabel, addMemo })(Header);

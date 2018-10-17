@@ -71,6 +71,19 @@ export const getMemos = () => dispatch => {
     })
 };
 
+export const addMemo = () => dispatch => {
+  dispatch(addMemoStarted());
+  return axios.post(`http://114.207.113.7:18888/memos`, {
+    title: 'New Memo',
+    content: '내용을 입력해주세요.'
+  }).then(res => {
+    dispatch(addMemoSuccess(res.data));
+  }).catch(error => {
+    dispatch(apiFailure(error));
+    throw error;
+  })
+};
+
 export const getCurrentLabel = id => ({
   type: 'GET_CURRENT_LABEL',
   payload: id
@@ -144,4 +157,15 @@ const getMemosStarted = () => ({
 const getMemosSuccess = data => ({
   type: 'GET_MEMOS_SUCCESS',
   payload: data
+});
+
+const addMemoStarted = () => ({
+  type: 'ADD_MEMO_STARTED',
+});
+
+const addMemoSuccess = data => ({
+  type: 'ADD_MEMO_SUCCESS',
+  payload: {
+    ...data
+  }
 });
