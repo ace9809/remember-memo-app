@@ -39,13 +39,18 @@ class MemoList extends Component {
         </Wrapper>
       )
     }
+
+    const createPath = (memoId) => {
+      return `/${this.props.currentLabel}/${memoId}`
+    };
+
     return (
       <Wrapper>
         {
           this.props.memos.map((memo, index) => {
             return(
               <StyledLink
-                to={`/${memo._id}`}
+                to={createPath(memo._id)}
                 key={memo._id}
               >
                 <Memo
