@@ -9,6 +9,7 @@ import { getCurrentLabel } from '../../actions';
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
 import LabelInfoTab from '../../containers/LabelInfoTab';
+import MemoTab from '../../containers/MemoTab';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -52,7 +53,7 @@ class App extends Component {
               <MemoWrapper>
                 <Route
                   path={`/${this.props.currentLabel}/:id`}
-                  component={LabelInfoTab}
+                  component={MemoTab}
                 />
               </MemoWrapper>
             </ContentWrapper>

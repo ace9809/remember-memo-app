@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import MemoList from '../../components/MemoList';
-import { getMemos, getLabel, deleteLabel, updateLabel} from '../../actions';
+import { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel} from '../../actions';
 import Modal from '../../components/Modal';
 
 const LabelInfoTabWrapper = styled.div`
@@ -85,6 +85,7 @@ class LabelInfoTab extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
+    props.getCurrentLabel(props.match.params.id);
     if (state.id !== props.match.params.id) {
       if (props.match.params.id !== 'all') {
         props.getLabel(props.match.params.id);
@@ -136,7 +137,7 @@ class LabelInfoTab extends Component {
         </LabelInfoWrapper>
         <MemoListWrapper>
           {
-            this.props.match.params.id === 'all' ? <MemoList memos={this.props.memos} /> : memos && <MemoList memos={memos} />
+            this.props.match.params.id === 'all' ? <MemoList memos={this.props.memos} currentLabel={this.props.currentLabel} /> : memos && <MemoList memos={memos} currentLabel={this.props.currentLabel}/>
           }
         </MemoListWrapper>
         {
@@ -157,10 +158,12 @@ class LabelInfoTab extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('라벨인포탭', state.labels.currentLabel);
   return {
     label: state.labels.label,
+    currentLabel: state.labels.currentLabel,
     memos: state.memos.memos
   }
 }
 
-export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel })(LabelInfoTab);
+export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel })(LabelInfoTab);
