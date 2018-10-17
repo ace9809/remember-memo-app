@@ -2,6 +2,7 @@
  * Created by Ace on 2018. 10. 17..
  */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 const MemoWrapper = styled.div`
@@ -74,4 +75,4 @@ class MemoTab extends Component {
   }
 }
 
-export default MemoTab;
+export default connect(null, null )(MemoTab);
