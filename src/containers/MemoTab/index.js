@@ -13,6 +13,8 @@ import Modal from '../../components/Modal';
 
 const MemoWrapper = styled.div`
   width: 100%:
+  height: 100%;
+  border-right: 1px solid #F3F1F1;
 `;
 
 const LabelInfoWrapper = styled.div`
