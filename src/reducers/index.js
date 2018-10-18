@@ -98,13 +98,6 @@ function memos(state = {memos: [], memo: {}}, action) {
         ...state
       };
     case 'GET_MEMO_SUCCESS':
-      console.log('asfadsf',
-        {
-          ...state,
-          memo: action.payload
-        }
-
-      )
       return {
         ...state,
         memo: action.payload
