@@ -158,7 +158,6 @@ class LabelInfoTab extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('라벨인포탭', state.labels.currentLabel);
   return {
     label: state.labels.label,
     currentLabel: state.labels.currentLabel,

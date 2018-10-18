@@ -68,6 +68,16 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
         ),
         label: action.payload
       };
+    case 'DELETE_LABEL_MEMO_STARTED':
+      return {
+        ...state
+      };
+    case 'DELETE_LABEL_MEMO_SUCCESS':
+      return {
+        ...state,
+        label: action.payload,
+        currentLabel: action.payload._id
+      };
   }
   return state;
 }

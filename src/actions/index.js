@@ -60,6 +60,18 @@ export const deleteLabel = (id) => dispatch => {
     })
 };
 
+export const deleteLabelMemo = (labelId, deleteMemos) => dispatch => {
+  dispatch(deleteLabelMemoStarted());
+  return axios.delete(`http://114.207.113.7:18888/labels/${labelId}/memos`, {
+    data: { memoIds: deleteMemos}
+  }).then(res => {
+      dispatch(deleteLabelMemoSuccess(res.data));
+    }).catch(error => {
+      dispatch(apiFailure(error));
+      throw error;
+    })
+};
+
 export const getMemos = () => dispatch => {
   dispatch(getMemosStarted());
   return axios.get(`http://114.207.113.7:18888/memos`)
@@ -167,6 +179,17 @@ const deleteLabelStarted = () => ({
 
 const deleteLabelSuccess = data => ({
   type: 'DELETE_LABEL_SUCCESS',
+  payload: {
+    ...data
+  }
+});
+
+const deleteLabelMemoStarted = () => ({
+  type: 'DELETE_LABEL_MEMO_STARTED',
+});
+
+const deleteLabelMemoSuccess = data => ({
+  type: 'DELETE_LABEL_MEMO_SUCCESS',
   payload: {
     ...data
   }

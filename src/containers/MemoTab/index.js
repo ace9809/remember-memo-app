@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getMemo, deleteMemo } from '../../actions';
+import { getMemo, deleteMemo, deleteLabelMemo } from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%;
@@ -82,8 +82,13 @@ class MemoTab extends Component {
   }
 
   deleteMemoOnClick = () => {
-    this.props.deleteMemo(this.props.match.params.id);
-    this.props.history.push('/all');
+    if (this.props.currentLabel === 'all') {
+      this.props.deleteMemo(this.props.match.params.id);
+      this.props.history.push('/all');
+    } else {
+      this.props.deleteLabelMemo(this.props.currentLabel, [String(this.props.match.params.id)]);
+    }
+
   };
 
   render() {
@@ -116,8 +121,9 @@ class MemoTab extends Component {
 function mapStateToProps(state) {
   console.log('state', state)
   return {
+    currentLabel: state.labels.currentLabel,
     memo: state.memos.memo
   }
 }
 
-export default connect(mapStateToProps, { getMemo, deleteMemo })(MemoTab);
+export default connect(mapStateToProps, { getMemo, deleteMemo, deleteLabelMemo })(MemoTab);
