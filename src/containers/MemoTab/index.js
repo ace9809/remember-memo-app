@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getMemo } from '../../actions';
+import { getMemo, deleteMemo } from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%;
@@ -81,6 +81,11 @@ class MemoTab extends Component {
     };
   }
 
+  deleteMemoOnClick = () => {
+    this.props.deleteMemo(this.props.match.params.id);
+    this.props.history.push('/all');
+  };
+
   render() {
     const {
       title,
@@ -90,7 +95,7 @@ class MemoTab extends Component {
     return (
       <MemoWrapper>
         <ButtonWrapper>
-          <Button onClick={this.getMemoOnClick}>삭제하기</Button>
+          <Button onClick={this.deleteMemoOnClick}>삭제하기</Button>
         </ButtonWrapper>
         <TitleWrapper>
           <TitleInput
@@ -115,4 +120,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMemo })(MemoTab);
+export default connect(mapStateToProps, { getMemo, deleteMemo })(MemoTab);

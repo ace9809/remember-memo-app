@@ -102,6 +102,15 @@ function memos(state = {memos: [], memo: {}}, action) {
         ...state,
         memo: action.payload
       };
+    case 'DELETE_MEMO_STARTED':
+      return {
+        ...state
+      };
+    case 'DELETE_MEMO_SUCCESS':
+      return {
+        ...state,
+        memos: state.memos.filter(memo => memo._id !== action.payload._id)
+      };
 
   }
   return state;

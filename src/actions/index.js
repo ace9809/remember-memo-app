@@ -95,6 +95,17 @@ export const getMemo = (id) => dispatch => {
     })
 };
 
+export const deleteMemo = (id) => dispatch => {
+  dispatch(deleteMemoStarted());
+  return axios.delete(`http://114.207.113.7:18888/memos/${id}`)
+    .then(res => {
+      dispatch(deleteMemoSuccess(res.data));
+    }).catch(error => {
+      dispatch(apiFailure(error));
+      throw error;
+    })
+};
+
 export const getCurrentLabel = id => ({
   type: 'GET_CURRENT_LABEL',
   payload: id
@@ -188,4 +199,15 @@ const getMemoStarted = () => ({
 const getMemoSuccess = data => ({
   type: 'GET_MEMO_SUCCESS',
   payload: data
+});
+
+const deleteMemoStarted = () => ({
+  type: 'DELETE_MEMO_STARTED',
+});
+
+const deleteMemoSuccess = data => ({
+  type: 'DELETE_MEMO_SUCCESS',
+  payload: {
+    ...data
+  }
 });
