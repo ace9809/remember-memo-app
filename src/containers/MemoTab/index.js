@@ -60,7 +60,6 @@ const TextArea = styled.textarea`
 class MemoTab extends Component {
   constructor(props) {
     super(props);
-    console.log('프롟', this.props);
     this.state = {
       id: 'all',
       title: '',
@@ -77,7 +76,6 @@ class MemoTab extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('새로고침', props);
     if (state.id !== props.match.params.id) {
       if (props.match.params.id !== 'all') {
         props.getMemo(props.match.params.id);
@@ -158,7 +156,6 @@ class MemoTab extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state)
   return {
     currentLabel: state.labels.currentLabel,
     memo: state.memos.memo

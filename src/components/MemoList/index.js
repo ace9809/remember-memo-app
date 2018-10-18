@@ -31,7 +31,6 @@ const StyledLink = styled(Link)`
 
 class MemoList extends Component {
   render () {
-    console.log('this.props.memos', this.props.memos);
     if (this.props.memos.length === 0) {
       return (
         <Wrapper>
