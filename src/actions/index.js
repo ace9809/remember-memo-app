@@ -118,6 +118,19 @@ export const deleteMemo = (id) => dispatch => {
     })
 };
 
+export const updateMemo = (id, params) => dispatch => {
+  dispatch(updateLabelStarted());
+  return axios.put(`http://114.207.113.7:18888/memos/${id}`, {
+    title : params.title,
+    content : params.content
+  }).then(res => {
+    dispatch(updateLabelSuccess(res.data));
+  }).catch(error => {
+    dispatch(apiFailure(error));
+    throw error;
+  })
+};
+
 export const getCurrentLabel = id => ({
   type: 'GET_CURRENT_LABEL',
   payload: id
@@ -230,6 +243,17 @@ const deleteMemoStarted = () => ({
 
 const deleteMemoSuccess = data => ({
   type: 'DELETE_MEMO_SUCCESS',
+  payload: {
+    ...data
+  }
+});
+
+const updateMemoStarted = () => ({
+  type: 'UPDATE_MEMO_STARTED',
+});
+
+const updateMemoSuccess = data => ({
+  type: 'UPDATE_MEMO_SUCCESS',
   payload: {
     ...data
   }

@@ -121,6 +121,11 @@ function memos(state = {memos: [], memo: {}}, action) {
         ...state,
         memos: state.memos.filter(memo => memo._id !== action.payload._id)
       };
+    case 'UPDATE_MEMO_SUCCESS':
+      return {
+        ...state,
+        memo: action.payload
+      };
 
   }
   return state;

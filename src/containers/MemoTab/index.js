@@ -4,7 +4,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getMemo, deleteMemo, deleteLabelMemo } from '../../actions';
+import _ from 'lodash';
+import { getMemo, deleteMemo, deleteLabelMemo, updateMemo } from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%;
@@ -61,35 +62,71 @@ class MemoTab extends Component {
     super(props);
     console.log('프롟', this.props);
     this.state = {
-      id: this.props.match.params.id
+      id: 'all',
+      title: '',
+      content: ''
     };
   }
 
   componentDidMount() {
     this.props.getMemo(this.props.match.params.id);
+      this.setState({
+        title: this.props.memo.title,
+        content: this.props.memo.content
+      })
   }
 
   static getDerivedStateFromProps(props, state) {
+    console.log('새로고침', props);
     if (state.id !== props.match.params.id) {
       if (props.match.params.id !== 'all') {
         props.getMemo(props.match.params.id);
       }
+
+      return {
+        id: props.match.params.id,
+        title: props.memo.title,
+        content: props.memo.content
+      };
     }
 
-    return {
-      id: props.match.params.id
-    };
+    return null;
+
   }
+
+  titleOnChange = (event) => {
+    this.setState({
+      title: event.target.value
+    });
+
+    this.debounceUpdateMemo();
+  };
+
+  contentOnChange = (event) => {
+    this.setState({
+      content: event.target.value
+    })
+
+    this.debounceUpdateMemo();
+  };
 
   deleteMemoOnClick = () => {
     if (this.props.currentLabel === 'all') {
       this.props.deleteMemo(this.props.match.params.id);
       this.props.history.push('/all');
     } else {
-      this.props.deleteLabelMemo(this.props.currentLabel, [String(this.props.match.params.id)]);
+      this.props.deleteLabelMemo(this.props.currentLabel, [this.props.match.params.id]);
     }
 
   };
+
+  updateMemo = () => {
+    this.props.updateMemo(this.props.match.params.id, {'title': this.state.title, 'content': this.state.content})
+  };
+
+  debounceUpdateMemo = _.debounce(function() {
+    this.updateMemo();
+  }, 1000);
 
   render() {
     const {
@@ -105,12 +142,14 @@ class MemoTab extends Component {
         <TitleWrapper>
           <TitleInput
             type="text"
-            value={title}
+            value={this.state.title || ''}
+            onChange={this.titleOnChange}
           />
         </TitleWrapper>
         <EditorWrapper>
           <TextArea
-            value={content}
+            value={this.state.content || ''}
+            onChange={this.contentOnChange}
           />
         </EditorWrapper>
       </MemoWrapper>
@@ -126,4 +165,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMemo, deleteMemo, deleteLabelMemo })(MemoTab);
+export default connect(mapStateToProps, { getMemo, deleteMemo, deleteLabelMemo, updateMemo })(MemoTab);
