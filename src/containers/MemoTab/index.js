@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { getMemo } from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%;
@@ -56,23 +57,62 @@ const TextArea = styled.textarea`
 `;
 
 class MemoTab extends Component {
+  constructor(props) {
+    super(props);
+    console.log('프롟', this.props);
+    this.state = {
+      id: this.props.match.params.id
+    };
+  }
+
+  componentDidMount() {
+    this.props.getMemo(this.props.match.params.id);
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.id !== props.match.params.id) {
+      if (props.match.params.id !== 'all') {
+        props.getMemo(props.match.params.id);
+      }
+    }
+
+    return {
+      id: props.match.params.id
+    };
+  }
+
   render() {
+    const {
+      title,
+      content,
+      updatedAt
+    } = this.props.memo;
     return (
       <MemoWrapper>
         <ButtonWrapper>
-          <Button>삭제하기</Button>
+          <Button onClick={this.getMemoOnClick}>삭제하기</Button>
         </ButtonWrapper>
         <TitleWrapper>
           <TitleInput
             type="text"
+            value={title}
           />
         </TitleWrapper>
         <EditorWrapper>
-          <TextArea />
+          <TextArea
+            value={content}
+          />
         </EditorWrapper>
       </MemoWrapper>
     )
   }
 }
 
-export default connect(null, null )(MemoTab);
+function mapStateToProps(state) {
+  console.log('state', state)
+  return {
+    memo: state.memos.memo
+  }
+}
+
+export default connect(mapStateToProps, { getMemo })(MemoTab);

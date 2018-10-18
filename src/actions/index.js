@@ -84,6 +84,17 @@ export const addMemo = () => dispatch => {
   })
 };
 
+export const getMemo = (id) => dispatch => {
+  dispatch(getMemoStarted());
+  return axios.get(`http://114.207.113.7:18888/memos/${id}`)
+    .then(res => {
+      dispatch(getMemoSuccess(res.data));
+    }).catch(error => {
+      dispatch(apiFailure(error));
+      throw error;
+    })
+};
+
 export const getCurrentLabel = id => ({
   type: 'GET_CURRENT_LABEL',
   payload: id
@@ -168,4 +179,13 @@ const addMemoSuccess = data => ({
   payload: {
     ...data
   }
+});
+
+const getMemoStarted = () => ({
+  type: 'GET_MEMO_STARTED',
+});
+
+const getMemoSuccess = data => ({
+  type: 'GET_MEMO_SUCCESS',
+  payload: data
 });

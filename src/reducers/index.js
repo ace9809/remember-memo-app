@@ -72,7 +72,7 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
   return state;
 }
 
-function memos(state = {memos: []}, action) {
+function memos(state = {memos: [], memo: {}}, action) {
   console.log(action);
   switch(action.type) {
     case 'GET_MEMOOS_STARTED':
@@ -92,6 +92,22 @@ function memos(state = {memos: []}, action) {
       return {
         ...state,
         memos: [...state.memos, action.payload]
+      };
+    case 'GET_MEMO_STARTED':
+      return {
+        ...state
+      };
+    case 'GET_MEMO_SUCCESS':
+      console.log('asfadsf',
+        {
+          ...state,
+          memo: action.payload
+        }
+
+      )
+      return {
+        ...state,
+        memo: action.payload
       };
 
   }
