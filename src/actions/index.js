@@ -119,12 +119,12 @@ export const deleteMemo = (id) => dispatch => {
 };
 
 export const updateMemo = (id, params) => dispatch => {
-  dispatch(updateLabelStarted());
+  dispatch(updateMemoStarted());
   return axios.put(`http://114.207.113.7:18888/memos/${id}`, {
     title : params.title,
     content : params.content
   }).then(res => {
-    dispatch(updateLabelSuccess(res.data));
+    dispatch(updateMemoSuccess(res.data));
   }).catch(error => {
     dispatch(apiFailure(error));
     throw error;
