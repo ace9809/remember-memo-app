@@ -61,40 +61,32 @@ class MemoTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 'all',
+      id: '',
       title: '',
-      content: ''
-    };
-  }
-
-  componentDidMount() {
-    this.props.getMemo(this.props.match.params.id);
-      this.setState({
-        title: this.props.memo.title,
-        content: this.props.memo.content
-      })
+      content: '',
+      edit: false
+    }
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (state.id !== props.match.params.id) {
-      if (props.match.params.id !== 'all') {
-        props.getMemo(props.match.params.id);
+    if (props.memos.length !== 0) {
+      const memo = props.memos.filter(memo => memo._id === props.match.params.id)[0];
+      if (memo) {
+        if (!state.edit) {
+          return {
+            title: memo.title,
+            content: memo.content
+          };
+        }
       }
-
-      return {
-        id: props.match.params.id,
-        title: props.memo.title,
-        content: props.memo.content
-      };
     }
-
     return null;
-
   }
 
   titleOnChange = (event) => {
     this.setState({
-      title: event.target.value
+      title: event.target.value,
+      edit: true
     });
 
     this.debounceUpdateMemo();
@@ -102,7 +94,8 @@ class MemoTab extends Component {
 
   contentOnChange = (event) => {
     this.setState({
-      content: event.target.value
+      content: event.target.value,
+      edit: true
     })
 
     this.debounceUpdateMemo();
@@ -127,11 +120,6 @@ class MemoTab extends Component {
   }, 1000);
 
   render() {
-    const {
-      title,
-      content,
-      updatedAt
-    } = this.props.memo;
     return (
       <MemoWrapper>
         <ButtonWrapper>
@@ -140,13 +128,13 @@ class MemoTab extends Component {
         <TitleWrapper>
           <TitleInput
             type="text"
-            value={this.state.title || ''}
+            value={this.state.title}
             onChange={this.titleOnChange}
           />
         </TitleWrapper>
         <EditorWrapper>
           <TextArea
-            value={this.state.content || ''}
+            value={this.state.content}
             onChange={this.contentOnChange}
           />
         </EditorWrapper>
@@ -158,7 +146,8 @@ class MemoTab extends Component {
 function mapStateToProps(state) {
   return {
     currentLabel: state.labels.currentLabel,
-    memo: state.memos.memo
+    memos: state.memos.memos,
+    isLoading: state.memos.isLoading
   }
 }
 

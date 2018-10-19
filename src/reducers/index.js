@@ -82,8 +82,8 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
   return state;
 }
 
-function memos(state = {memos: [], memo: {}}, action) {
-  console.log(action);
+function memos(state = {memos: [], memo: {}, isLoading: true}, action) {
+  console.log('액션 타입', action.type);
   switch(action.type) {
     case 'GET_MEMOOS_STARTED':
       return {
@@ -105,12 +105,14 @@ function memos(state = {memos: [], memo: {}}, action) {
       };
     case 'GET_MEMO_STARTED':
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case 'GET_MEMO_SUCCESS':
       return {
         ...state,
-        memo: action.payload
+        memo: action.payload,
+        isLoading: false
       };
     case 'DELETE_MEMO_STARTED':
       return {
@@ -121,10 +123,17 @@ function memos(state = {memos: [], memo: {}}, action) {
         ...state,
         memos: state.memos.filter(memo => memo._id !== action.payload._id)
       };
+    case 'UPDATE_MEMO_STARTED':
+      return {
+        ...state
+      };
     case 'UPDATE_MEMO_SUCCESS':
       return {
         ...state,
-        memo: action.payload
+        memos: state.memos.map(
+          (memo, i) => memo._id === action.payload._id ? {...memo, ...action.payload}
+            : memo
+        )
       };
 
   }
