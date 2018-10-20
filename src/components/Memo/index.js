@@ -10,9 +10,8 @@ import { Link } from "react-router-dom";
 import { checkedMemos } from '../../actions';
 
 const Wrapper = styled.div`
-  height: 120px;
+  height: 160px;
   border-bottom: 1px solid #F3F1F1;
-  padding: 20px;
   cursor: pointer;
   
   &:hover {
@@ -20,30 +19,35 @@ const Wrapper = styled.div`
   }
 `;
 
+const MemoInfoWrapper = styled.div`
+  padding: 10px;
+`;
+
 const TitleWrapper = styled.div`
-  display:inline-block;
   width: 300px;
-  height: 30px;
+  height: 20px;
   font-weight: bold;
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  text-overflow: ellipsis;
+  white-space: nowrap
 `;
 
 const CreatedWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: flex-end;
   font-size: 10px;
   color: #a6a6a6;
+  margin-top: 10px;
 `;
 
 const ContentWrapper = styled.div`
   width: 300px;
-  height: 55px;
-  margin: 20px 0 10px 0;
+  height: 20px;
+  margin: 30px 0 10px 0;
   padding: 5px 0;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
 `;
 
 const StyledLink = styled(Link)`
@@ -82,22 +86,24 @@ class Memo extends Component {
     return (
       <Wrapper>
         <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
-        <StyledLink
-          to={createPath(this.props.memo._id)}
-          key={this.props.memo._id}
-        >
-          <TitleWrapper>
-            {this.props.memo.title}
-          </TitleWrapper>
-          <CreatedWrapper>
-            <Moment format="YYYY.MM.DD">
-              {this.props.memo.createdAt}
-            </Moment>
-          </CreatedWrapper>
-          <ContentWrapper>
-            {this.props.memo.content}
-          </ContentWrapper>
-        </StyledLink>
+        <MemoInfoWrapper>
+          <StyledLink
+            to={createPath(this.props.memo._id)}
+            key={this.props.memo._id}
+          >
+            <TitleWrapper>
+              {this.props.memo.title}
+            </TitleWrapper>
+            <CreatedWrapper>
+              <Moment format="YYYY.MM.DD">
+                {this.props.memo.createdAt}
+              </Moment>
+            </CreatedWrapper>
+            <ContentWrapper>
+              {this.props.memo.content}
+            </ContentWrapper>
+          </StyledLink>
+        </MemoInfoWrapper>
       </Wrapper>
     )
   }
