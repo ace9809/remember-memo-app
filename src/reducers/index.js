@@ -81,11 +81,11 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
       }
       };
 
-    case 'DELETE_LABEL_MEMO_STARTED':
+    case 'REMOVE_LABEL_MEMO_STARTED':
       return {
         ...state
       };
-    case 'DELETE_LABEL_MEMO_SUCCESS':
+    case 'REMOVE_LABEL_MEMO_SUCCESS':
       return {
         ...state,
         label: action.payload,

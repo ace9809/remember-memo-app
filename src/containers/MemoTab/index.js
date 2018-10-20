@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import _ from 'lodash';
-import { getMemo, deleteMemo, deleteLabelMemo, updateMemo } from '../../actions';
+import { getMemo, deleteMemo, removeLabelMemo, updateMemo } from '../../actions';
 
 const MemoWrapper = styled.div`
   width: 100%;
@@ -155,4 +155,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMemo, deleteMemo, deleteLabelMemo, updateMemo })(MemoTab);
+export default connect(mapStateToProps, { getMemo, deleteMemo, removeLabelMemo, updateMemo })(MemoTab);
