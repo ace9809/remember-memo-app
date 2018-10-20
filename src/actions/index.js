@@ -4,7 +4,6 @@
 import axios from 'axios';
 
 export const addLabel = title => dispatch => {
-  dispatch(addLabelStarted());
   return axios.post(`http://114.207.113.7:18888/labels`, {
     title : title
   }).then(res => {
@@ -16,7 +15,6 @@ export const addLabel = title => dispatch => {
 };
 
 export const getLabels = () => dispatch => {
-  dispatch(getLabelsStarted());
   return axios.get(`http://114.207.113.7:18888/labels`)
     .then(res => {
       dispatch(getLabelsSuccess(res.data));
@@ -27,7 +25,6 @@ export const getLabels = () => dispatch => {
 };
 
 export const getLabel = (id) => dispatch => {
-  dispatch(getLabelStarted());
   return axios.get(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
       dispatch(getLabelSuccess(res.data));
@@ -38,7 +35,6 @@ export const getLabel = (id) => dispatch => {
 };
 
 export const updateLabel = (id, title) => dispatch => {
-  dispatch(updateLabelStarted());
   return axios.put(`http://114.207.113.7:18888/labels/${id}`, {
     title : title
   }).then(res => {
@@ -50,7 +46,6 @@ export const updateLabel = (id, title) => dispatch => {
 };
 
 export const deleteLabel = (id) => dispatch => {
-  dispatch(deleteLabelStarted());
   return axios.delete(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
       dispatch(deleteLabelSuccess(res.data));
@@ -61,7 +56,6 @@ export const deleteLabel = (id) => dispatch => {
 };
 
 export const removeLabelMemo = (labelId, removeMemos) => dispatch => {
-  dispatch(removeLabelMemoStarted());
   return axios.delete(`http://114.207.113.7:18888/labels/${labelId}/memos`, {
     data: { memoIds: removeMemos}
   }).then(res => {
@@ -73,7 +67,6 @@ export const removeLabelMemo = (labelId, removeMemos) => dispatch => {
 };
 
 export const getMemos = () => dispatch => {
-  dispatch(getMemosStarted());
   return axios.get(`http://114.207.113.7:18888/memos`)
     .then(res => {
       dispatch(getMemosSuccess(res.data));
@@ -84,7 +77,6 @@ export const getMemos = () => dispatch => {
 };
 
 export const addMemo = () => dispatch => {
-  dispatch(addMemoStarted());
   return axios.post(`http://114.207.113.7:18888/memos`, {
     title: 'New Memo',
     content: '내용을 입력해주세요.'
@@ -97,7 +89,6 @@ export const addMemo = () => dispatch => {
 };
 
 export const getMemo = (id) => dispatch => {
-  dispatch(getMemoStarted());
   return axios.get(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
       dispatch(getMemoSuccess(res.data));
@@ -108,7 +99,6 @@ export const getMemo = (id) => dispatch => {
 };
 
 export const deleteMemo = (id) => dispatch => {
-  dispatch(deleteMemoStarted());
   return axios.delete(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
       dispatch(deleteMemoSuccess(res.data));
@@ -120,7 +110,6 @@ export const deleteMemo = (id) => dispatch => {
 };
 
 export const updateMemo = (id, params) => dispatch => {
-  dispatch(updateMemoStarted());
   return axios.put(`http://114.207.113.7:18888/memos/${id}`, {
     title : params.title,
     content : params.content
@@ -140,7 +129,6 @@ export const checkedMemos = (Memo, checked) => dispatch => {
 };
 
 export const addLabelMemo = (id, addMemos) => dispatch => {
-  dispatch(addLabelMemoStarted());
   return axios.post(`http://114.207.113.7:18888/labels/${id}/memos`, {
     memoIds: addMemos
   }).then(res => {
@@ -164,10 +152,6 @@ const apiFailure = error => ({
   }
 });
 
-const addLabelStarted = () => ({
-  type: 'ADD_LABEL_STARTED',
-});
-
 const addLabelSuccess = data => ({
   type: 'ADD_LABEL_SUCCESS',
   payload: {
@@ -175,17 +159,9 @@ const addLabelSuccess = data => ({
   }
 });
 
-const getLabelsStarted = () => ({
-  type: 'GET_LABELS_STARTED',
-});
-
 const getLabelsSuccess = data => ({
   type: 'GET_LABELS_SUCCESS',
   payload: data
-});
-
-const getLabelStarted = () => ({
-  type: 'GET_LABEL_STARTED',
 });
 
 const getLabelSuccess = data => ({
@@ -195,19 +171,11 @@ const getLabelSuccess = data => ({
   }
 });
 
-const updateLabelStarted = () => ({
-  type: 'UPDATE_LABEL_STARTED',
-});
-
 const updateLabelSuccess = data => ({
   type: 'UPDATE_LABEL_SUCCESS',
   payload: {
     ...data
   }
-});
-
-const deleteLabelStarted = () => ({
-  type: 'DELETE_LABEL_STARTED',
 });
 
 const deleteLabelSuccess = data => ({
@@ -217,10 +185,6 @@ const deleteLabelSuccess = data => ({
   }
 });
 
-const removeLabelMemoStarted = () => ({
-  type: 'REMOVE_LABEL_MEMO_STARTED',
-});
-
 const removeLabelMemoSuccess = data => ({
   type: 'REMOVE_LABEL_MEMO_SUCCESS',
   payload: {
@@ -228,17 +192,9 @@ const removeLabelMemoSuccess = data => ({
   }
 });
 
-const getMemosStarted = () => ({
-  type: 'GET_MEMOS_STARTED',
-});
-
 const getMemosSuccess = data => ({
   type: 'GET_MEMOS_SUCCESS',
   payload: data
-});
-
-const addMemoStarted = () => ({
-  type: 'ADD_MEMO_STARTED',
 });
 
 const addMemoSuccess = data => ({
@@ -248,17 +204,9 @@ const addMemoSuccess = data => ({
   }
 });
 
-const getMemoStarted = () => ({
-  type: 'GET_MEMO_STARTED',
-});
-
 const getMemoSuccess = data => ({
   type: 'GET_MEMO_SUCCESS',
   payload: data
-});
-
-const deleteMemoStarted = () => ({
-  type: 'DELETE_MEMO_STARTED',
 });
 
 const deleteMemoSuccess = data => ({
@@ -273,10 +221,6 @@ const deleteLabelMemoSuccess = data => ({
   payload: {
     ...data
   }
-});
-
-const updateMemoStarted = () => ({
-  type: 'UPDATE_MEMO_STARTED',
 });
 
 const updateMemoSuccess = data => ({
@@ -296,10 +240,6 @@ const updateLabelMemoSuccess = data => ({
 const checkedMemosSuccess = data => ({
   type: 'CHECKED_MEMOS_SUCCESS',
   payload: data
-});
-
-const addLabelMemoStarted = () => ({
-  type: 'ADD_LABEL_MEMO_STARTED',
 });
 
 const addLabelMemoSuccess = data => ({
