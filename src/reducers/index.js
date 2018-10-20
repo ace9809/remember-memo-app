@@ -78,7 +78,7 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
             (memo, i) => memo._id === action.payload._id ? {...memo, ...action.payload}
               : memo
           )
-      }
+        }
       };
 
     case 'REMOVE_LABEL_MEMO_STARTED':
@@ -102,6 +102,14 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
           (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
             : label
         )
+      };
+    case 'DELETE_LABEL_MEMO_SUCCESS':
+      return {
+        ...state,
+        label: {
+          ...state.label,
+          memos: state.label.memos.filter(memo => memo._id !== action.payload._id)
+        }
       };
 
   }

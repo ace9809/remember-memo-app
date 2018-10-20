@@ -112,6 +112,7 @@ export const deleteMemo = (id) => dispatch => {
   return axios.delete(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
       dispatch(deleteMemoSuccess(res.data));
+      dispatch(deleteLabelMemoSuccess(res.data));
     }).catch(error => {
       dispatch(apiFailure(error));
       throw error;
@@ -262,6 +263,13 @@ const deleteMemoStarted = () => ({
 
 const deleteMemoSuccess = data => ({
   type: 'DELETE_MEMO_SUCCESS',
+  payload: {
+    ...data
+  }
+});
+
+const deleteLabelMemoSuccess = data => ({
+  type: 'DELETE_LABEL_MEMO_SUCCESS',
   payload: {
     ...data
   }

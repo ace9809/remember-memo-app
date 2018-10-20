@@ -102,11 +102,10 @@ class MemoTab extends Component {
   };
 
   deleteMemoOnClick = () => {
+    this.props.deleteMemo(this.props.match.params.id);
     if (this.props.currentLabel === 'all') {
-      this.props.deleteMemo(this.props.match.params.id);
       this.props.history.push('/all');
     } else {
-      this.props.deleteLabelMemo(this.props.currentLabel, [this.props.match.params.id]);
       this.props.history.push(`/${this.props.currentLabel}`);
     }
 
