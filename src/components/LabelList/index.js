@@ -29,7 +29,8 @@ class LabelList extends Component {
   render () {
     const {
       labels,
-      memos
+      memos,
+      currentLabel
     } = this.props;
     if (labels.length === 0) {
       return (
@@ -45,7 +46,9 @@ class LabelList extends Component {
         >
           <Label
             title={'전체'}
+            id={'all'}
             memos={memos}
+            currentLabel={currentLabel}
           >
             전체
           </Label>
@@ -60,6 +63,8 @@ class LabelList extends Component {
                 <Label
                   title={label.title}
                   memos={label.memos}
+                  id={label._id}
+                  currentLabel={currentLabel}
                 >
                 </Label>
               </StyledLink>

@@ -13,15 +13,19 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap; 
   cursor: pointer;
+  border: ${props => props.currentLabel ? '2px solid black' : ''}
 `;
 
 const Header = props => {
   const {
     title,
-    memos
+    memos,
+    id,
+    currentLabel
   } = props;
+
   return (
-    <Wrapper>
+    <Wrapper currentLabel={id === currentLabel}>
       {title} ({memos.length})
     </Wrapper>
   )

@@ -21,7 +21,7 @@ class LabelTab extends Component {
   render() {
     return (
       <LabelWrapper>
-        <LabelList labels={this.props.labels} memos={this.props.memos} />
+        <LabelList labels={this.props.labels} memos={this.props.memos} currentLabel={this.props.currentLabel} />
       </LabelWrapper>
     );
   }
@@ -30,7 +30,8 @@ class LabelTab extends Component {
 function mapStateToProps(state) {
   return {
     labels: state.labels.labels,
-    memos: state.memos.memos
+    memos: state.memos.memos,
+    currentLabel: state.labels.currentLabel
   }
 }
 
