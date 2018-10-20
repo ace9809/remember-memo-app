@@ -176,27 +176,32 @@ class LabelInfoTab extends Component {
 
   render() {
     const {
-      title,
+      match,
+      labels,
+      label,
+      currentLabel,
       memos,
-    } = this.props.label;
+      checkedMemos
+    } = this.props;
     return (
       <LabelInfoTabWrapper>
         <LabelInfoWrapper>
           <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
           <TitleWrapper>
             {
-              this.props.match.params.id === 'all' ? '전체' : title
+              match.params.id === 'all' ? '전체' : label.title
             }
           </TitleWrapper>
           <FooterWrapper>
             <CountWrapper>
               {
-                this.props.match.params.id === 'all' ? this.props.memos && <div>{this.props.memos.length}개의 노트</div> : memos && <div>{memos.length}개의 노트</div>
+                match.params.id === 'all' ? memos && <div>{memos.length}개의 노트</div> :
+                label.memos && <div>{label.length}개의 노트</div>
               }
             </CountWrapper>
             <ButtonNavWrapper>
               {
-                this.props.match.params.id !== 'all' &&
+                match.params.id !== 'all' &&
                 <ButtonWrapper>
                   <button onClick={this.openChangeLabelModal}>
                     라벨 수정
@@ -204,7 +209,7 @@ class LabelInfoTab extends Component {
                 </ButtonWrapper>
               }
               {
-                this.props.match.params.id !== 'all' &&
+                match.params.id !== 'all' &&
                 <ButtonWrapper>
                   <button onClick={this.deleteLabel}>
                     라벨 삭제
@@ -222,7 +227,8 @@ class LabelInfoTab extends Component {
         </LabelInfoWrapper>
         <MemoListWrapper>
           {
-            this.props.match.params.id === 'all' ? <MemoList memos={this.props.memos} currentLabel={this.props.currentLabel} allChecked={this.state.checked} /> : memos && <MemoList memos={memos} currentLabel={this.props.currentLabel} allChecked={this.state.checked}/>
+            match.params.id === 'all' ? <MemoList memos={memos} currentLabel={currentLabel} allChecked={this.state.checked} /> :
+            label.memos && <MemoList memos={label.memos} currentLabel={currentLabel} allChecked={this.state.checked}/>
           }
         </MemoListWrapper>
         {
@@ -264,7 +270,7 @@ class LabelInfoTab extends Component {
               </ModalTitleWrapper>
               <ModalContentWrapper>
                 {
-                  this.props.labels.map(label => {
+                  labels.map(label => {
                     return (
                       <div
                         key={label._id}
