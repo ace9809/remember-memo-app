@@ -65,15 +65,6 @@ class Memo extends Component {
     }
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   if (props) {
-  //     return {
-  //       checked: props.allChecked
-  //     };
-  //   }
-  //   return null;
-  // }
-
   checkboxOnClick = () => {
     this.setState({checked: !this.state.checked})
     this.props.checkedMemos(this.props.memo, !this.state.checked);

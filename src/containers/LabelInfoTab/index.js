@@ -230,8 +230,8 @@ class LabelInfoTab extends Component {
         </LabelInfoWrapper>
         <MemoListWrapper>
           {
-            match.params.id === 'all' ? <MemoList memos={memos} currentLabel={currentLabel} allChecked={this.state.checked} /> :
-            label.memos && <MemoList memos={label.memos} currentLabel={currentLabel} allChecked={this.state.checked}/>
+            match.params.id === 'all' ? <MemoList memos={memos} currentLabel={currentLabel} /> :
+            label.memos && <MemoList memos={label.memos} currentLabel={currentLabel} />
           }
         </MemoListWrapper>
         {

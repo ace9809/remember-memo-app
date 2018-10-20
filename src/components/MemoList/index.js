@@ -40,7 +40,6 @@ class MemoList extends Component {
                   memo={memo}
                   key={index}
                   currentLabel={this.props.currentLabel}
-                  allChecked={this.props.allChecked}
                 />
             )
           })
