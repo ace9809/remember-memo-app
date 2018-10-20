@@ -68,6 +68,19 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
         ),
         label: action.payload
       };
+
+    case 'UPDATE_LABEL_MEMO_SUCCESS':
+      return {
+        ...state,
+        label: {
+          ...state.label,
+          memos: state.label.memos.map(
+            (memo, i) => memo._id === action.payload._id ? {...memo, ...action.payload}
+              : memo
+          )
+      }
+      };
+
     case 'DELETE_LABEL_MEMO_STARTED':
       return {
         ...state

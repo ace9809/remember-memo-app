@@ -125,6 +125,7 @@ export const updateMemo = (id, params) => dispatch => {
     content : params.content
   }).then(res => {
     dispatch(updateMemoSuccess(res.data));
+    dispatch(updateLabelMemoSuccess(res.data));
   }).catch(error => {
     dispatch(apiFailure(error));
     throw error;
@@ -272,6 +273,13 @@ const updateMemoStarted = () => ({
 
 const updateMemoSuccess = data => ({
   type: 'UPDATE_MEMO_SUCCESS',
+  payload: {
+    ...data
+  }
+});
+
+const updateLabelMemoSuccess = data => ({
+  type: 'UPDATE_LABEL_MEMO_SUCCESS',
   payload: {
     ...data
   }
