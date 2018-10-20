@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import MemoList from '../../components/MemoList';
-import { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel, addLabelMemo} from '../../actions';
+import { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel, addLabelMemo, removeLabelMemo} from '../../actions';
 import Modal from '../../components/Modal';
 
 const LabelInfoTabWrapper = styled.div`
@@ -187,6 +187,11 @@ class LabelInfoTab extends Component {
     this.closeMoveMemoModal();
   };
 
+  removeLabelMemoOnClick = (id) => {
+    this.props.removeLabelMemo(id, this.props.checkedMemos);
+    this.closeMoveMemoModal();
+  };
+
   render() {
     const {
       match,
@@ -232,6 +237,14 @@ class LabelInfoTab extends Component {
                 <ButtonWrapper>
                   <button onClick={this.openMoveMemoModal}>
                     라벨 이동
+                  </button>
+                </ButtonWrapper>
+              }
+              {
+                match.params.id !== 'all' &&
+                <ButtonWrapper>
+                  <button onClick={() => this.removeLabelMemoOnClick(this.props.currentLabel)}>
+                    라벨 해제
                   </button>
                 </ButtonWrapper>
               }
@@ -321,4 +334,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel, addLabelMemo })(LabelInfoTab);
+export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel, addLabelMemo, removeLabelMemo })(LabelInfoTab);
