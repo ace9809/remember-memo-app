@@ -109,13 +109,15 @@ export const deleteMemo = (id) => dispatch => {
     })
 };
 
-export const updateMemo = (id, params) => dispatch => {
+export const updateMemo = (id, params, currentLabel) => dispatch => {
   return axios.put(`http://114.207.113.7:18888/memos/${id}`, {
     title : params.title,
     content : params.content
   }).then(res => {
     dispatch(updateMemoSuccess(res.data));
-    dispatch(updateLabelMemoSuccess(res.data));
+    if (currentLabel !== 'all') {
+      dispatch(updateLabelMemoSuccess(res.data));
+    }
   }).catch(error => {
     dispatch(apiFailure(error));
     throw error;

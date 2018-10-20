@@ -112,7 +112,7 @@ class MemoTab extends Component {
   };
 
   updateMemo = () => {
-    this.props.updateMemo(this.props.match.params.id, {'title': this.state.title, 'content': this.state.content})
+    this.props.updateMemo(this.props.match.params.id, {'title': this.state.title, 'content': this.state.content}, this.props.currentLabel)
     this.setState({
       edit: false
     });
