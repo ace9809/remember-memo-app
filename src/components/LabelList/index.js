@@ -27,7 +27,11 @@ const StyledLink = styled(Link)`
 
 class LabelList extends Component {
   render () {
-    if (this.props.labels.length === 0) {
+    const {
+      labels,
+      memos
+    } = this.props;
+    if (labels.length === 0) {
       return (
         <Wrapper>
           라벨이 없습니다.
@@ -41,13 +45,13 @@ class LabelList extends Component {
         >
           <Label
             title={'전체'}
-            memos={this.props.memos}
+            memos={memos}
           >
             전체
           </Label>
         </StyledLink>
         {
-          this.props.labels.map(label => {
+          labels.map(label => {
             return(
               <StyledLink
                 to={`/${label._id}`}
