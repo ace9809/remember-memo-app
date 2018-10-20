@@ -145,6 +145,7 @@ class LabelInfoTab extends Component {
 
   handleClick = () => {
     this.props.updateLabel(this.props.match.params.id, this.state.value);
+    this.setState({value: ''});
     this.closeChangeLabelModal();
   };
 

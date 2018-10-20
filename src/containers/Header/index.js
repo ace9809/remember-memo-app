@@ -125,6 +125,7 @@ class Header extends Component {
 
   handleClick = () => {
     this.props.addLabel(this.state.value);
+    this.setState({value: ''});
     this.closeModal();
   };
 
