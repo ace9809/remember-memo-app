@@ -3,9 +3,11 @@
  */
 import React, {Component} from 'react';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
 import 'moment-timezone';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import { checkedMemos } from '../../actions';
 
 const Wrapper = styled.div`
   height: 120px;
@@ -59,24 +61,24 @@ class Memo extends Component {
     }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.allChecked !== state.checked) {
-      return {
-        checked: props.allChecked
-      };
-    }
-    return null;
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   if (props) {
+  //     return {
+  //       checked: props.allChecked
+  //     };
+  //   }
+  //   return null;
+  // }
 
   checkboxOnClick = () => {
     this.setState({checked: !this.state.checked})
+    this.props.checkedMemos(this.props.memo, !this.state.checked);
   };
 
   render () {
     const createPath = (memoId) => {
       return `/${this.props.currentLabel}/${memoId}`
     };
-    console.log('메모 프롭', this.state);
     return (
       <Wrapper>
         <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
@@ -102,4 +104,4 @@ class Memo extends Component {
 }
 
 
-export default Memo;
+export default connect(null, { checkedMemos })(Memo);

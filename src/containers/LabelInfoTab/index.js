@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import MemoList from '../../components/MemoList';
-import { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel} from '../../actions';
+import { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel, addLabelMemo} from '../../actions';
 import Modal from '../../components/Modal';
 
 const LabelInfoTabWrapper = styled.div`
@@ -114,20 +114,30 @@ class LabelInfoTab extends Component {
     super();
 
     this.state = {
-      modalIsOpen: false,
+      changeLabelModalIsOpen: false,
+      moveMemoModalIsOpen: false,
       id: 'all',
       value: '',
       checked: false
     };
   }
 
-  openModal = () => {
-    this.setState({modalIsOpen: true});
+  openChangeLabelModal = () => {
+    this.setState({changeLabelModalIsOpen: true});
   };
 
-  closeModal = () => {
-    this.setState({modalIsOpen: false});
+  closeChangeLabelModal = () => {
+    this.setState({changeLabelModalIsOpen: false});
   };
+
+  openMoveMemoModal = () => {
+    this.setState({moveMemoModalIsOpen: true});
+  };
+
+  closeMoveMemoModal = () => {
+    this.setState({moveMemoModalIsOpen: false});
+  };
+
 
   handleChange = (event) => {
     this.setState({value: event.target.value});
@@ -135,7 +145,7 @@ class LabelInfoTab extends Component {
 
   handleClick = () => {
     this.props.updateLabel(this.props.match.params.id, this.state.value);
-    this.closeModal();
+    this.closeChangeLabelModal();
   };
 
   checkboxOnClick = () => {
@@ -158,6 +168,10 @@ class LabelInfoTab extends Component {
   deleteLabel = () => {
     this.props.deleteLabel(this.props.label._id);
     this.props.history.push('/all');
+  };
+
+  addLabelMemoOnClick = (id) => {
+    this.props.addLabelMemo(id, this.props.checkedMemos)
   };
 
   render() {
@@ -184,7 +198,7 @@ class LabelInfoTab extends Component {
               {
                 this.props.match.params.id !== 'all' &&
                 <ButtonWrapper>
-                  <button onClick={this.openModal}>
+                  <button onClick={this.openChangeLabelModal}>
                     라벨 수정
                   </button>
                 </ButtonWrapper>
@@ -198,7 +212,7 @@ class LabelInfoTab extends Component {
                 </ButtonWrapper>
               }
               <ButtonWrapper>
-                <button onClick={this.deleteLabel}>
+                <button onClick={this.openMoveMemoModal}>
                   라벨 이동
                 </button>
               </ButtonWrapper>
@@ -212,11 +226,10 @@ class LabelInfoTab extends Component {
           }
         </MemoListWrapper>
         {
-          this.state.modalIsOpen &&
+          this.state.changeLabelModalIsOpen &&
           <Modal
-            open={this.state.modalIsOpen}
-            submitModal={this.submitModal}
-            closeModal={this.closeModal}
+            open={this.state.changeLabelModalIsOpen}
+            closeModal={this.closeChangeLabelModal}
           >
             <ModalWrapper>
               <ModalTitleWrapper>
@@ -229,11 +242,43 @@ class LabelInfoTab extends Component {
                 <Input type="text" maxLength="15" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
               </InputWrapper>
               <ModalButtonWrapper>
-                <ModalButton color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
+                <ModalButton color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeChangeLabelModal}>
                   취소하기
                 </ModalButton>
                 <ModalButton color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.handleClick}>
                   변경하기
+                </ModalButton>
+              </ModalButtonWrapper>
+            </ModalWrapper>
+          </Modal>
+        }
+        {
+          this.state.moveMemoModalIsOpen &&
+          <Modal
+            open={this.state.moveMemoModalIsOpen}
+            closeModal={this.closeChangeLabelModal}
+          >
+            <ModalWrapper>
+              <ModalTitleWrapper>
+                라벨 지정하기
+              </ModalTitleWrapper>
+              <ModalContentWrapper>
+                {
+                  this.props.labels.map(label => {
+                    return (
+                      <div
+                        key={label._id}
+                        onClick={() => this.addLabelMemoOnClick(label._id)}
+                      >
+                        {label.title}
+                      </div>
+                    )
+                  })
+                }
+              </ModalContentWrapper>
+              <ModalButtonWrapper>
+                <ModalButton color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeMoveMemoModal}>
+                  취소하기
                 </ModalButton>
               </ModalButtonWrapper>
             </ModalWrapper>
@@ -246,10 +291,12 @@ class LabelInfoTab extends Component {
 
 function mapStateToProps(state) {
   return {
+    labels: state.labels.labels,
     label: state.labels.label,
     currentLabel: state.labels.currentLabel,
-    memos: state.memos.memos
+    memos: state.memos.memos,
+    checkedMemos: state.memos.checkedMemos
   }
 }
 
-export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel })(LabelInfoTab);
+export default connect(mapStateToProps, { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel, addLabelMemo })(LabelInfoTab);

@@ -78,11 +78,20 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
         label: action.payload,
         currentLabel: action.payload._id
       };
+    case 'ADD_LABEL_MEMO_SUCCESS':
+      return {
+        ...state,
+        labels: state.labels.map(
+          (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
+            : label
+        )
+      };
+
   }
   return state;
 }
 
-function memos(state = {memos: [], memo: {}, isLoading: true}, action) {
+function memos(state = {memos: [], memo: {}, isLoading: true, checkedMemos: []}, action) {
   console.log('액션 타입', action.type);
   switch(action.type) {
     case 'GET_MEMOOS_STARTED':
@@ -135,7 +144,11 @@ function memos(state = {memos: [], memo: {}, isLoading: true}, action) {
             : memo
         )
       };
-
+    case 'CHECKED_MEMOS_SUCCESS':
+      return {
+        ...state,
+        checkedMemos: [...state.checkedMemos, action.payload]
+      };
   }
   return state;
 }

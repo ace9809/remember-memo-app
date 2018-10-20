@@ -131,6 +131,24 @@ export const updateMemo = (id, params) => dispatch => {
   })
 };
 
+export const checkedMemos = (Memo, checked) => dispatch => {
+  if (checked) {
+    dispatch(checkedMemosSuccess(Memo._id))
+  }
+};
+
+export const addLabelMemo = (id, addMemos) => dispatch => {
+  dispatch(addLabelMemoStarted());
+  return axios.post(`http://114.207.113.7:18888/labels/${id}/memos`, {
+    memoIds: addMemos
+  }).then(res => {
+    dispatch(addLabelMemoSuccess(res.data));
+  }).catch(error => {
+    dispatch(apiFailure(error));
+    throw error;
+  })
+};
+
 export const getCurrentLabel = id => ({
   type: 'GET_CURRENT_LABEL',
   payload: id
@@ -254,6 +272,22 @@ const updateMemoStarted = () => ({
 
 const updateMemoSuccess = data => ({
   type: 'UPDATE_MEMO_SUCCESS',
+  payload: {
+    ...data
+  }
+});
+
+const checkedMemosSuccess = data => ({
+  type: 'CHECKED_MEMOS_SUCCESS',
+  payload: data
+});
+
+const addLabelMemoStarted = () => ({
+  type: 'ADD_LABEL_MEMO_STARTED',
+});
+
+const addLabelMemoSuccess = data => ({
+  type: 'ADD_LABEL_MEMO_SUCCESS',
   payload: {
     ...data
   }
