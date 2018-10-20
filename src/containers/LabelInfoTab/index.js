@@ -174,21 +174,30 @@ class LabelInfoTab extends Component {
                 this.props.match.params.id === 'all' ? this.props.memos && <div>{this.props.memos.length}개의 노트</div> : memos && <div>{memos.length}개의 노트</div>
               }
             </CountWrapper>
-            {
-              this.props.match.params.id !== 'all' &&
-              <ButtonNavWrapper>
+            <ButtonNavWrapper>
+              {
+                this.props.match.params.id !== 'all' &&
                 <ButtonWrapper>
                   <button onClick={this.openModal}>
                     라벨 수정
                   </button>
                 </ButtonWrapper>
+              }
+              {
+                this.props.match.params.id !== 'all' &&
                 <ButtonWrapper>
                   <button onClick={this.deleteLabel}>
                     라벨 삭제
                   </button>
                 </ButtonWrapper>
-              </ButtonNavWrapper>
-            }
+              }
+              <ButtonWrapper>
+                <button onClick={this.deleteLabel}>
+                  라벨 이동
+                </button>
+              </ButtonWrapper>
+            </ButtonNavWrapper>
+
           </FooterWrapper>
         </LabelInfoWrapper>
         <MemoListWrapper>
