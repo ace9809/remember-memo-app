@@ -256,7 +256,7 @@ class LabelInfoTab extends Component {
           this.state.moveMemoModalIsOpen &&
           <Modal
             open={this.state.moveMemoModalIsOpen}
-            closeModal={this.closeChangeLabelModal}
+            closeModal={this.closeMoveMemoModal}
           >
             <ModalWrapper>
               <ModalTitleWrapper>
