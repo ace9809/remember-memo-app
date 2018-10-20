@@ -164,10 +164,6 @@ class LabelInfoTab extends Component {
     this.closeChangeLabelModal();
   };
 
-  checkboxOnClick = () => {
-    this.setState({checked: !this.state.checked})
-  };
-
   static getDerivedStateFromProps(props, state) {
     props.getCurrentLabel(props.match.params.id);
     if (state.id !== props.match.params.id) {
@@ -187,7 +183,8 @@ class LabelInfoTab extends Component {
   };
 
   addLabelMemoOnClick = (id) => {
-    this.props.addLabelMemo(id, this.props.checkedMemos)
+    this.props.addLabelMemo(id, this.props.checkedMemos);
+    this.closeMoveMemoModal();
   };
 
   render() {
