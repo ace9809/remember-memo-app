@@ -40,7 +40,7 @@ const TitleWrapper = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-  margin-top: 80px;
+  margin-top: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -116,7 +116,8 @@ class LabelInfoTab extends Component {
     this.state = {
       modalIsOpen: false,
       id: 'all',
-      value: ''
+      value: '',
+      checked: false
     };
   }
 
@@ -135,6 +136,10 @@ class LabelInfoTab extends Component {
   handleClick = () => {
     this.props.updateLabel(this.props.match.params.id, this.state.value);
     this.closeModal();
+  };
+
+  checkboxOnClick = () => {
+    this.setState({checked: !this.state.checked})
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -163,6 +168,7 @@ class LabelInfoTab extends Component {
     return (
       <LabelInfoTabWrapper>
         <LabelInfoWrapper>
+          <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
           <TitleWrapper>
             {
               this.props.match.params.id === 'all' ? '전체' : title
@@ -202,7 +208,7 @@ class LabelInfoTab extends Component {
         </LabelInfoWrapper>
         <MemoListWrapper>
           {
-            this.props.match.params.id === 'all' ? <MemoList memos={this.props.memos} currentLabel={this.props.currentLabel} /> : memos && <MemoList memos={memos} currentLabel={this.props.currentLabel}/>
+            this.props.match.params.id === 'all' ? <MemoList memos={this.props.memos} currentLabel={this.props.currentLabel} allChecked={this.state.checked} /> : memos && <MemoList memos={memos} currentLabel={this.props.currentLabel} allChecked={this.state.checked}/>
           }
         </MemoListWrapper>
         {

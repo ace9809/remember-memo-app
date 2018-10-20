@@ -6,7 +6,6 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
 import Memo from '../Memo';
 
 const Wrapper = styled.div`
@@ -22,13 +21,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
-  &:link {text-decoration: none; color: black;}
-  &:visited {text-decoration: none; color: black;}
-  &:active {text-decoration: none; color: black;}
-  &:hover {text-decoration: none; color: black;}
-`;
-
 class MemoList extends Component {
   render () {
     if (this.props.memos.length === 0) {
@@ -39,24 +31,17 @@ class MemoList extends Component {
       )
     }
 
-    const createPath = (memoId) => {
-      return `/${this.props.currentLabel}/${memoId}`
-    };
-
     return (
       <Wrapper>
         {
           this.props.memos.map((memo, index) => {
             return(
-              <StyledLink
-                to={createPath(memo._id)}
-                key={memo._id}
-              >
                 <Memo
                   memo={memo}
                   key={index}
+                  currentLabel={this.props.currentLabel}
+                  allChecked={this.props.allChecked}
                 />
-              </StyledLink>
             )
           })
         }

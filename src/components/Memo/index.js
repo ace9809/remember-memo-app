@@ -1,10 +1,11 @@
 /**
  * Created by Ace on 2018. 10. 14..
  */
-import React from 'react';
+import React, {Component} from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   height: 120px;
@@ -43,28 +44,62 @@ const ContentWrapper = styled.div`
   overflow: hidden;
 `;
 
-const Header = props => {
-  const {
-    title,
-    content,
-    createdAt
-  } = props.memo;
-  return (
-    <Wrapper>
-      <TitleWrapper>
-        {title}
-      </TitleWrapper>
-      <CreatedWrapper>
-        <Moment format="YYYY.MM.DD">
-          {createdAt}
-        </Moment>
-      </CreatedWrapper>
-      <ContentWrapper>
-        {content}
-      </ContentWrapper>
-    </Wrapper>
-  )
+const StyledLink = styled(Link)`
+  &:link {text-decoration: none; color: black;}
+  &:visited {text-decoration: none; color: black;}
+  &:active {text-decoration: none; color: black;}
+  &:hover {text-decoration: none; color: black;}
+`;
+
+class Memo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: false
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.allChecked !== state.checked) {
+      return {
+        checked: props.allChecked
+      };
+    }
+    return null;
+  }
+
+  checkboxOnClick = () => {
+    this.setState({checked: !this.state.checked})
+  };
+
+  render () {
+    const createPath = (memoId) => {
+      return `/${this.props.currentLabel}/${memoId}`
+    };
+    console.log('메모 프롭', this.state);
+    return (
+      <Wrapper>
+        <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
+        <StyledLink
+          to={createPath(this.props.memo._id)}
+          key={this.props.memo._id}
+        >
+          <TitleWrapper>
+            {this.props.memo.title}
+          </TitleWrapper>
+          <CreatedWrapper>
+            <Moment format="YYYY.MM.DD">
+              {this.props.memo.createdAt}
+            </Moment>
+          </CreatedWrapper>
+          <ContentWrapper>
+            {this.props.memo.content}
+          </ContentWrapper>
+        </StyledLink>
+      </Wrapper>
+    )
+  }
 }
 
 
-export default Header;
+export default Memo;
