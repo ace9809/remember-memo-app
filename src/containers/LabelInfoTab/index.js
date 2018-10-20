@@ -62,13 +62,61 @@ const ButtonWrapper = styled.div`
   font-size: 25px;
 `;
 
+const ModalWrapper = styled.div`
+  width: 100%;
+`;
+
+const ModalTitleWrapper = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+const ModalContentWrapper = styled.div`
+  margin-top: 15px;
+  color: #777777;
+`;
+
+const InputWrapper = styled.div`
+  margin-top: 15px;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  height: 38px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 0 8px;
+  outline: 0;
+`;
+
+const ModalButtonWrapper = styled.div`
+  margin-top: 20px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const ModalButton = styled.button`
+  border-radius: 6px;
+  width: 80px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 20px;
+  background-color: ${(props) => props.backgroundColor};
+  color: ${(props) => props.color};
+  outline: 0;
+  border: ${(props) => props.border};
+`;
+
 class LabelInfoTab extends Component {
   constructor() {
     super();
 
     this.state = {
       modalIsOpen: false,
-      id: 'all'
+      id: 'all',
+      value: ''
     };
   }
 
@@ -80,8 +128,13 @@ class LabelInfoTab extends Component {
     this.setState({modalIsOpen: false});
   };
 
-  submitModal = (value) => {
-    this.props.updateLabel(this.props.match.params.id, value);
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  };
+
+  handleClick = () => {
+    this.props.updateLabel(this.props.match.params.id, this.state.value);
+    this.closeModal();
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -121,18 +174,21 @@ class LabelInfoTab extends Component {
                 this.props.match.params.id === 'all' ? this.props.memos && <div>{this.props.memos.length}개의 노트</div> : memos && <div>{memos.length}개의 노트</div>
               }
             </CountWrapper>
-            <ButtonNavWrapper>
-              <ButtonWrapper>
-                <button onClick={this.openModal}>
-                  라벨 수정
-                </button>
-              </ButtonWrapper>
-              <ButtonWrapper>
-                <button onClick={this.deleteLabel}>
-                  라벨 삭제
-                </button>
-              </ButtonWrapper>
-            </ButtonNavWrapper>
+            {
+              this.props.match.params.id !== 'all' &&
+              <ButtonNavWrapper>
+                <ButtonWrapper>
+                  <button onClick={this.openModal}>
+                    라벨 수정
+                  </button>
+                </ButtonWrapper>
+                <ButtonWrapper>
+                  <button onClick={this.deleteLabel}>
+                    라벨 삭제
+                  </button>
+                </ButtonWrapper>
+              </ButtonNavWrapper>
+            }
           </FooterWrapper>
         </LabelInfoWrapper>
         <MemoListWrapper>
@@ -146,11 +202,27 @@ class LabelInfoTab extends Component {
             open={this.state.modalIsOpen}
             submitModal={this.submitModal}
             closeModal={this.closeModal}
-            title="라벨 이름 변경"
-            content="라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 15자릿수 까지 지정할 수 있습니다."
-            leftButtonText="취소하기"
-            rightButtonText="변경하기"
-          />
+          >
+            <ModalWrapper>
+              <ModalTitleWrapper>
+                라벨 이름 변경
+              </ModalTitleWrapper>
+              <ModalContentWrapper>
+                라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 15자릿수 까지 지정할 수 있습니다.
+              </ModalContentWrapper>
+              <InputWrapper>
+                <Input type="text" maxLength="15" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
+              </InputWrapper>
+              <ModalButtonWrapper>
+                <ModalButton color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
+                  취소하기
+                </ModalButton>
+                <ModalButton color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.handleClick}>
+                  변경하기
+                </ModalButton>
+              </ModalButtonWrapper>
+            </ModalWrapper>
+          </Modal>
         }
       </LabelInfoTabWrapper>
     )

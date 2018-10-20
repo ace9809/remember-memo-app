@@ -67,60 +67,18 @@ const customStyles = {
 ReactModal.setAppElement('#root')
 
 class Modal extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      value: ''
-    };
-  }
-
   closeModal = () => {
     this.props.closeModal();
   };
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value});
-  };
-
-  handleClick = () => {
-    this.props.submitModal(this.state.value);
-    this.props.closeModal();
-  };
-
   render() {
-    const {
-      title,
-      content,
-      leftButtonText,
-      rightButtonText
-    } = this.props;
     return (
       <ReactModal
         isOpen={this.props.open}
         onRequestClose={this.closeModal}
-        contentLabel="Example Modal"
         style={customStyles}
       >
-        <ModalWrapper>
-          <ModalTitleWrapper>
-            {title}
-          </ModalTitleWrapper>
-          <ModalContentWrapper>
-            {content}
-          </ModalContentWrapper>
-          <InputWrapper>
-            <Input type="text" maxLength="15" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
-          </InputWrapper>
-          <ButtonWrapper>
-            <Button color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
-              {leftButtonText}
-            </Button>
-            <Button color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.handleClick}>
-              {rightButtonText}
-            </Button>
-          </ButtonWrapper>
-        </ModalWrapper>
+        {this.props.children}
       </ReactModal>
     )
   }
