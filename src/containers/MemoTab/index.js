@@ -106,6 +106,7 @@ class MemoTab extends Component {
     if (this.props.currentLabel === 'all') {
       this.props.history.push('/all');
     } else {
+      this.props.removeLabelMemo(this.props.currentLabel, [this.props.match.params.id])
       this.props.history.push(`/${this.props.currentLabel}`);
     }
 
