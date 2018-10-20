@@ -10,7 +10,6 @@ import LabelList from '../../components/LabelList'
 const LabelWrapper = styled.div`
   width: 100%:
   height: 100%;
-  border-right: 1px solid #F3F1F1;
 `;
 
 class LabelTab extends Component {
