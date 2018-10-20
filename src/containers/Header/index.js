@@ -154,10 +154,10 @@ class Header extends Component {
                 새 라벨 만들기
               </ModalTitleWrapper>
               <ModalContentWrapper>
-                라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 15자릿수 까지 지정할 수 있습니다.
+                라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 10자릿수 까지 지정할 수 있습니다.
               </ModalContentWrapper>
               <InputWrapper>
-                <Input type="text" maxLength="15" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
+                <Input type="text" maxLength="10" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
               </InputWrapper>
               <ButtonWrapper>
                 <Button color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
