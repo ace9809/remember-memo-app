@@ -217,13 +217,15 @@ class LabelInfoTab extends Component {
                   </button>
                 </ButtonWrapper>
               }
-              <ButtonWrapper>
-                <button onClick={this.openMoveMemoModal}>
-                  라벨 이동
-                </button>
-              </ButtonWrapper>
+              {
+                match.params.id === 'all' &&
+                <ButtonWrapper>
+                  <button onClick={this.openMoveMemoModal}>
+                    라벨 이동
+                  </button>
+                </ButtonWrapper>
+              }
             </ButtonNavWrapper>
-
           </FooterWrapper>
         </LabelInfoWrapper>
         <MemoListWrapper>
