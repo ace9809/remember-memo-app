@@ -76,7 +76,11 @@ function labels(state = {labels: [], label: {}, currentLabel: 'all'}, action) {
       return {
         ...state,
         label: action.payload,
-        currentLabel: action.payload._id
+        currentLabel: action.payload._id,
+        labels: state.labels.map(
+          (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
+            : label
+        )
       };
     case 'ADD_LABEL_MEMO_SUCCESS':
       return {
