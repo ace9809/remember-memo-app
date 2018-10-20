@@ -109,6 +109,21 @@ const ModalButton = styled.button`
   border: ${(props) => props.border};
 `;
 
+const MoveLabelListWrapper = styled.div`
+  margin-top: 5px;
+  height: 400px;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { 
+    display: none !important;
+  }
+`;
+
+const MoveLabel = styled.div`
+  margin-top: 10px;
+  cursor: pointer;
+`;
+
 class LabelInfoTab extends Component {
   constructor() {
     super();
@@ -270,19 +285,22 @@ class LabelInfoTab extends Component {
                 라벨 지정하기
               </ModalTitleWrapper>
               <ModalContentWrapper>
+                지정할 라벨을 클릭해주세요.
+              </ModalContentWrapper>
+              <MoveLabelListWrapper>
                 {
                   labels.map(label => {
                     return (
-                      <div
+                      <MoveLabel
                         key={label._id}
                         onClick={() => this.addLabelMemoOnClick(label._id)}
                       >
                         {label.title}
-                      </div>
+                      </MoveLabel>
                     )
                   })
                 }
-              </ModalContentWrapper>
+              </MoveLabelListWrapper>
               <ModalButtonWrapper>
                 <ModalButton color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeMoveMemoModal}>
                   취소하기
