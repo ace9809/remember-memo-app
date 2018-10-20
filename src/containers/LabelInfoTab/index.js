@@ -182,12 +182,10 @@ class LabelInfoTab extends Component {
       label,
       currentLabel,
       memos,
-      checkedMemos
     } = this.props;
     return (
       <LabelInfoTabWrapper>
         <LabelInfoWrapper>
-          <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
           <TitleWrapper>
             {
               match.params.id === 'all' ? '전체' : label.title

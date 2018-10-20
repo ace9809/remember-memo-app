@@ -1,7 +1,7 @@
 const initialState = {
   memos: [],
   memo: {},
-  checkMemos: []
+  checkedMemos: []
 };
 
 const memos = (state = initialState, action) => {
