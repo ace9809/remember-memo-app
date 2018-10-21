@@ -24,7 +24,7 @@
 - 해당 라벨에 속한 메모리스트를 보여준다.
 - mapStateToProps로 리덕스 state를 props로 받아서 쓸 수 있다.
 
-#### LabelTab Container
+### LabelTab Container
 
 - 라벨의 리스트를 볼 수 있는 컨테이너
 - store와 연결된 컨테이너로 dispatch를 통해 라벨 목록, 메모를 가져온다.
