@@ -18,9 +18,15 @@ class LabelTab extends Component {
     this.props.getMemos();
   }
   render() {
+    const  {
+      labels,
+      memos,
+      currentLabel
+    } = this.props;
+
     return (
       <LabelWrapper>
-        <LabelList labels={this.props.labels} memos={this.props.memos} currentLabel={this.props.currentLabel} />
+        <LabelList labels={labels} memos={memos} currentLabel={currentLabel} />
       </LabelWrapper>
     );
   }
@@ -33,6 +39,5 @@ function mapStateToProps(state) {
     currentLabel: state.labels.currentLabel
   }
 }
-
 
 export default connect(mapStateToProps, { getLabels, getMemos })(LabelTab);

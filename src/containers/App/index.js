@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getCurrentLabel } from '../../actions';
 import Header from '../../containers/Header';

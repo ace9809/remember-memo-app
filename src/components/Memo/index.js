@@ -1,7 +1,7 @@
 /**
  * Created by Ace on 2018. 10. 14..
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import 'moment-timezone';
@@ -66,7 +66,7 @@ class Memo extends Component {
   }
 
   checkboxOnClick = () => {
-    this.setState({checked: !this.state.checked})
+    this.setState({checked: !this.state.checked});
     this.props.checkedMemos(this.props.memo, !this.state.checked);
   };
 
@@ -74,24 +74,29 @@ class Memo extends Component {
     const createPath = (memoId) => {
       return `/${this.props.currentLabel}/${memoId}`
     };
+
+    const {
+      memo
+    } = this.props;
+
     return (
       <Wrapper>
         <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
         <MemoInfoWrapper>
           <StyledLink
-            to={createPath(this.props.memo._id)}
-            key={this.props.memo._id}
+            to={createPath(memo._id)}
+            key={memo._id}
           >
             <TitleWrapper>
-              {this.props.memo.title}
+              {memo.title}
             </TitleWrapper>
             <CreatedWrapper>
               <Moment format="YYYY.MM.DD">
-                {this.props.memo.createdAt}
+                {memo.createdAt}
               </Moment>
             </CreatedWrapper>
             <ContentWrapper>
-              {this.props.memo.content}
+              {memo.content}
             </ContentWrapper>
           </StyledLink>
         </MemoInfoWrapper>
@@ -99,6 +104,5 @@ class Memo extends Component {
     )
   }
 }
-
 
 export default connect(null, { checkedMemos })(Memo);

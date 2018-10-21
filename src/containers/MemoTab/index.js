@@ -96,7 +96,7 @@ class MemoTab extends Component {
     this.setState({
       content: event.target.value,
       edit: true
-    })
+    });
 
     this.debounceUpdateMemo();
   };

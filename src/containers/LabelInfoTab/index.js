@@ -127,13 +127,25 @@ const MoveLabel = styled.div`
 class LabelInfoTab extends Component {
   constructor() {
     super();
-
     this.state = {
       changeLabelModalIsOpen: false,
       moveMemoModalIsOpen: false,
       id: 'all',
       value: '',
       checked: false
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    props.getCurrentLabel(props.match.params.id);
+    if (state.id !== props.match.params.id) {
+      if (props.match.params.id !== 'all') {
+        props.getLabel(props.match.params.id);
+      }
+    }
+
+    return {
+      id: props.match.params.id
     };
   }
 
@@ -154,28 +166,15 @@ class LabelInfoTab extends Component {
   };
 
 
-  handleChange = (event) => {
+  updateLabelOnChange = (event) => {
     this.setState({value: event.target.value});
   };
 
-  handleClick = () => {
+  updateLabelOnClick = () => {
     this.props.updateLabel(this.props.match.params.id, this.state.value);
     this.setState({value: ''});
     this.closeChangeLabelModal();
   };
-
-  static getDerivedStateFromProps(props, state) {
-    props.getCurrentLabel(props.match.params.id);
-    if (state.id !== props.match.params.id) {
-      if (props.match.params.id !== 'all') {
-        props.getLabel(props.match.params.id);
-      }
-    }
-
-    return {
-      id: props.match.params.id
-    };
-  }
 
   deleteLabel = () => {
     this.props.deleteLabel(this.props.label._id);
@@ -271,13 +270,13 @@ class LabelInfoTab extends Component {
                 라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 10자릿수 까지 지정할 수 있습니다.
               </ModalContentWrapper>
               <InputWrapper>
-                <Input type="text" maxLength="10" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
+                <Input type="text" maxLength="10" placeholder="Label name" value={this.state.value} onChange={this.updateLabelOnChange} />
               </InputWrapper>
               <ModalButtonWrapper>
                 <ModalButton color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeChangeLabelModal}>
                   취소하기
                 </ModalButton>
-                <ModalButton color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.handleClick}>
+                <ModalButton color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.updateLabelOnClick}>
                   변경하기
                 </ModalButton>
               </ModalButtonWrapper>

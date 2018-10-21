@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   border: ${props => props.currentLabel ? '2px solid black' : ''}
 `;
 
-const Header = props => {
+const Label = props => {
   const {
     title,
     memos,
@@ -31,5 +31,4 @@ const Header = props => {
   )
 }
 
-
-export default Header;
+export default Label;

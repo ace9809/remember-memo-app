@@ -31,23 +31,26 @@ class MemoList extends Component {
       )
     }
 
+    const {
+      memos,
+      currentLabel
+    } = this.props;
+
     return (
       <Wrapper>
         {
-          this.props.memos.map((memo, index) => {
+          memos.map((memo, index) => {
             return(
                 <Memo
                   memo={memo}
                   key={index}
-                  currentLabel={this.props.currentLabel}
+                  currentLabel={currentLabel}
                 />
             )
           })
         }
       </Wrapper>
     )
-
-
   }
 }
 

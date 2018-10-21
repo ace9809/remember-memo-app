@@ -111,19 +111,19 @@ class Header extends Component {
     this.props.addMemo();
   };
 
-  openModal = () => {
+  addLabelOpenModal = () => {
     this.setState({modalIsOpen: true});
   };
 
-  closeModal = () => {
+  addLabelCloseModal = () => {
     this.setState({modalIsOpen: false});
   };
 
-  handleChange = (event) => {
+  addLabelOnChange = (event) => {
     this.setState({value: event.target.value});
   };
 
-  handleClick = () => {
+  addLabelOnClick = () => {
     this.props.addLabel(this.state.value);
     this.setState({value: ''});
     this.closeModal();
@@ -140,15 +140,14 @@ class Header extends Component {
             <ColorFaEdit onClick={this.addMemoOnClick} />
           </IconWrapper>
           <IconWrapper>
-            <ColorTags onClick={this.openModal} />
+            <ColorTags onClick={this.addLabelOpenModal} />
           </IconWrapper>
         </NavWrapper>
         {
           this.state.modalIsOpen &&
           <Modal
             open={this.state.modalIsOpen}
-            submitModal={this.submitModal}
-            closeModal={this.closeModal}
+            closeModal={this.addLabelCloseModal}
           >
             <ModalWrapper>
               <ModalTitleWrapper>
@@ -158,13 +157,13 @@ class Header extends Component {
                 라벨은 공통된 주제를 중심으로 노트를 정리할 때 유용합니다. 라벨은 최대 10자릿수 까지 지정할 수 있습니다.
               </ModalContentWrapper>
               <InputWrapper>
-                <Input type="text" maxLength="10" placeholder="Label name" value={this.state.value} onChange={this.handleChange} />
+                <Input type="text" maxLength="10" placeholder="Label name" value={this.state.value} onChange={this.addLabelOnChange} />
               </InputWrapper>
               <ButtonWrapper>
                 <Button color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
                   취소하기
                 </Button>
-                <Button color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.handleClick}>
+                <Button color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.addLabelOnClick}>
                   작성하기
                 </Button>
               </ButtonWrapper>

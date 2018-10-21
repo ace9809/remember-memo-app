@@ -32,6 +32,7 @@ class LabelList extends Component {
       memos,
       currentLabel
     } = this.props;
+
     if (labels.length === 0) {
       return (
         <Wrapper>
@@ -73,8 +74,6 @@ class LabelList extends Component {
         }
       </Wrapper>
     )
-
-
   }
 }
 
