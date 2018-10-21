@@ -27,6 +27,7 @@
   - axios: HTTP 요청을 하기 위해 사용
   - styled-components: 전반적인 스타일링을 하기 위해 사용
   - prop-types: props의 타입을 체크하기 위해 사용
+  - lodash: debounce, clone, reverse를 쓰기 위해 사용
 
 ## 프로젝트 구조
 
@@ -67,4 +68,6 @@ $ npm start # start app
 - [ ] 유연한 예외처리
 - [ ] 반응형 웹, 디자인 수정
 - [ ] 버그 수정(지속적)
+- [ ] 환경 별로 host file 만들기
+- [ ] NotFound 페이지 만들기
 

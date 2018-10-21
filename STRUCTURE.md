@@ -5,7 +5,9 @@
 - Redux store를 만들어주고 설정할 수 있다.(미들웨어 설정 및 프로젝트에서 store를 아무데서나 쓸 수 있도록 provider 설정할 수 있다.)
 - APP container를 렌더링 해준다.
 
-### APP
+## Container
+
+### APP Container
 
 - 프로젝트 실행시 처음 보여지는 container
 - 메모나 라벨을 클릭시 라우트를 만들어준다.
@@ -38,6 +40,8 @@
 - mapStateToProps로 리덕스 state를 props로 받아서 쓸 수 있다.
 - 메모를 삭제후 전체 라벨로 redirect 시켜준다.
 - getDerivedStateFromProps를 props가 달라질 때마다 메모를 찾은 후 setState해준다.
+
+## Component
 
 ### Label Component
 
