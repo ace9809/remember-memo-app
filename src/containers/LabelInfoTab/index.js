@@ -211,6 +211,7 @@ class LabelInfoTab extends Component {
   removeLabelMemoOnClick = (id) => {
     // state에서 현재 체크된 메모를 가져오 removeLabelMemo를 dispatch하여 체크된 메모를 라벨에서 지정해제 해준다.
     this.props.removeLabelMemo(id, this.props.checkedMemos, true);
+    this.props.history.push(`/${id}`);
   };
 
   render() {
