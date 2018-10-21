@@ -162,7 +162,7 @@ class Header extends Component {
                 <Input type="text" maxLength="10" placeholder="Label name" value={this.state.value} onChange={this.addLabelOnChange} />
               </InputWrapper>
               <ButtonWrapper>
-                <Button color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.closeModal}>
+                <Button color={'#b3b3b3'} backgroundcolor={'#ffffff'} border={'1px solid #ededed'} onClick={this.addLabelCloseModal}>
                   취소하기
                 </Button>
                 <Button color={'#ffffff'} backgroundColor={'#dcdfe3'} border={'0'} onClick={this.addLabelOnClick}>
