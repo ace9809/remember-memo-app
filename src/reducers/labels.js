@@ -84,6 +84,7 @@ const labels = (state = initialState, action) => {
           (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
             : label
         ),
+        label: action.payload,
         checkedMemos: []
       };
 

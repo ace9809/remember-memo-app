@@ -184,6 +184,7 @@ class LabelInfoTab extends Component {
 
   addLabelMemoOnClick = (id) => {
     this.props.addLabelMemo(id, this.props.checkedMemos);
+    this.props.history.push(`/${id}`);
     this.closeMoveMemoModal();
   };
 
