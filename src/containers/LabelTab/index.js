@@ -36,7 +36,7 @@ class LabelTab extends Component {
 LabelTab.propTypes = {
   memos: PropTypes.array,
   labels: PropTypes.array,
-  currentLabel: PropTypes.object,
+  currentLabel: PropTypes.string,
   getLabels: PropTypes.func,
   getMemos: PropTypes.func,
 };

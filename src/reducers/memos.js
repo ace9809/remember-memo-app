@@ -38,8 +38,10 @@ const memos = (state = initialState, action) => {
             : memo
         )
       };
+
+    default:
+      return state;
   }
-  return state;
 };
 
 export default memos;

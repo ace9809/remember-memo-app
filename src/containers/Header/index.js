@@ -134,7 +134,7 @@ class Header extends Component {
     return (
       <HeaderWrapper>
         <LogoWrapper>
-          <img src={HeaderLogo} height='50px' />
+          <img src={HeaderLogo} height='50px' alt=""/>
         </LogoWrapper>
         <NavWrapper>
           <IconWrapper>

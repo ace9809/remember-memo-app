@@ -107,14 +107,15 @@ export const deleteMemo = id => (dispatch, getState) => {
   let deleteLabelMemoLabels;
   return axios.delete(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
-      state.labels.labels.map(
+      deleteLabelMemoLabels = state.labels.labels.map(
         (label) => {
           label.memos.map(memo => {
             if (memo.id === res.data.id) {
               label.memos = label.memos.filter(memo => memo._id !== res.data._id);
-              deleteLabelMemoLabels = label;
             }
+            return memo;
           });
+          return label;
         });
       dispatch(deleteMemoSuccess(res.data));
       dispatch(deleteLabelMemoSuccess(deleteLabelMemoLabels));

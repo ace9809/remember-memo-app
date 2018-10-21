@@ -328,7 +328,7 @@ LabelInfoTab.propTypes = {
   match: PropTypes.object,
   labels: PropTypes.array,
   label: PropTypes.object,
-  currentLabel: PropTypes.object,
+  currentLabel: PropTypes.string,
   memos: PropTypes.array,
   getMemos: PropTypes.func,
   getLabel: PropTypes.func,

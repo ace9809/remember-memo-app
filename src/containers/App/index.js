@@ -65,7 +65,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  currentLabel: PropTypes.object,
+  currentLabel: PropTypes.string,
   getCurrntLabel: PropTypes.func
 };
 

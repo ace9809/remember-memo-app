@@ -57,7 +57,7 @@ class MemoList extends Component {
 
 MemoList.propTypes = {
   memos: PropTypes.array,
-  currentLabel: PropTypes.object,
+  currentLabel: PropTypes.string,
 };
 
 export default MemoList;

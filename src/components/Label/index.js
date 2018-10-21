@@ -35,7 +35,7 @@ const Label = props => {
 Label.propTypes = {
   title: PropTypes.string,
   id: PropTypes.string,
-  currentLabel: PropTypes.object,
+  currentLabel: PropTypes.string,
   memos: PropTypes.array,
 };
 
