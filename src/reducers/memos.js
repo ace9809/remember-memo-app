@@ -1,3 +1,4 @@
+import _ from 'lodash';
 
 const initialState = {
   memos: [],
@@ -9,7 +10,7 @@ const memos = (state = initialState, action) => {
     case 'GET_MEMOS_SUCCESS':
       return {
         ...state,
-        memos: action.payload,
+        memos: _(action.payload).clone().reverse()
       };
 
     case 'ADD_MEMO_SUCCESS':
