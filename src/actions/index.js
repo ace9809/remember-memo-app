@@ -5,6 +5,10 @@ import axios from 'axios';
 
 //라벨을 추가하는 액션
 export const addLabel = title => dispatch => {
+  if (title === '') {
+    alert('라벨이름을 입력해주세요');
+    return;
+  }
   return axios.post(`http://114.207.113.7:18888/labels`, {
     title : title
   }).then(res => {
@@ -39,6 +43,10 @@ export const getLabel = id => dispatch => {
 
 //라벨을 수정하는 액션
 export const updateLabel = (id, title) => dispatch => {
+  if (title === '') {
+    alert('변경할 라벨 이름을 입력해주세요.');
+    return;
+  }
   return axios.put(`http://114.207.113.7:18888/labels/${id}`, {
     title : title
   }).then(res => {
