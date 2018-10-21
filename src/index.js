@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
+import 'react-app-polyfill/ie9';
 import reducers from './reducers';
 import './index.css';
 import App from './containers/App';
