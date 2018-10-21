@@ -164,7 +164,12 @@ class LabelInfoTab extends Component {
 
   openMoveMemoModal = () => {
     // 라벨 지정 모달 여는 함수
-    this.setState({moveMemoModalIsOpen: true});
+    console.log('체크드 메모', this.props.checkedMemos)
+    if (this.props.checkedMemos.length === 0) {
+      alert('체크한 메모가 없습니다.');
+    } else {
+      this.setState({moveMemoModalIsOpen: true});
+    }
   };
 
   closeMoveMemoModal = () => {
