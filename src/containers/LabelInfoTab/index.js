@@ -213,7 +213,7 @@ class LabelInfoTab extends Component {
             <CountWrapper>
               {
                 match.params.id === 'all' ? memos && <div>{memos.length}개의 노트</div> :
-                label.memos && <div>{label.length}개의 노트</div>
+                label.memos && <div>{label.memos.length}개의 노트</div>
               }
             </CountWrapper>
             <ButtonNavWrapper>
