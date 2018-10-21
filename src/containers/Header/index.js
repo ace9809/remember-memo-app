@@ -110,6 +110,7 @@ class Header extends Component {
 
   addMemoOnClick = () => {
     this.props.addMemo();
+    this.props.history.push('/all');
   };
 
   addLabelOpenModal = () => {
