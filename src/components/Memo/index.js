@@ -66,7 +66,7 @@ class Memo extends Component {
     }
   }
 
-  checkboxOnClick = () => {
+  checkboxOnChange = () => {
     this.setState({checked: !this.state.checked});
     this.props.checkedMemos(this.props.memo, !this.state.checked);
   };
@@ -82,7 +82,7 @@ class Memo extends Component {
 
     return (
       <Wrapper>
-        <input type="checkbox" checked={this.state.checked} onClick={this.checkboxOnClick}/>
+        <input type="checkbox" checked={this.state.checked} onChange={this.checkboxOnChange}/>
         <MemoInfoWrapper>
           <StyledLink
             to={createPath(memo._id)}
