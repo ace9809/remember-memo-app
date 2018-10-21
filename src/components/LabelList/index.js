@@ -36,6 +36,18 @@ class LabelList extends Component {
     if (labels.length === 0) {
       return (
         <Wrapper>
+          <StyledLink
+            to="/all"
+          >
+            <Label
+              title={'전체'}
+              id={'all'}
+              memos={memos}
+              currentLabel={currentLabel}
+            >
+              전체
+            </Label>
+          </StyledLink>
           라벨이 없습니다.
         </Wrapper>
       )
