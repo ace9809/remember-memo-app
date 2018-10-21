@@ -85,12 +85,13 @@ const labels = (state = initialState, action) => {
       };
 
     case 'DELETE_LABEL_MEMO_SUCCESS':
+      console.log('리듀서action', action)
       return {
         ...state,
-        label: {
-          ...state.label,
-          memos: state.label.memos.filter(memo => memo._id !== action.payload._id)
-        }
+        labels: state.labels.map(
+          (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
+            : label
+        )
       };
 
   }

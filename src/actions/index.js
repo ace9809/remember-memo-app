@@ -98,11 +98,22 @@ export const getMemo = id => dispatch => {
     })
 };
 
-export const deleteMemo = id => dispatch => {
+export const deleteMemo = id => (dispatch, getState) => {
+  const state = getState();
+  let deleteLabelMemoLabels;
   return axios.delete(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
+      state.labels.labels.map(
+        (label) => {
+          label.memos.map(memo => {
+            if (memo.id === res.data.id) {
+              label.memos = label.memos.filter(memo => memo._id !== res.data._id);
+              deleteLabelMemoLabels = label;
+            }
+          });
+        });
       dispatch(deleteMemoSuccess(res.data));
-      dispatch(deleteLabelMemoSuccess(res.data));
+      dispatch(deleteLabelMemoSuccess(deleteLabelMemoLabels));
     }).catch(error => {
       dispatch(apiFailure(error));
       throw error;
