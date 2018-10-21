@@ -36,16 +36,14 @@
 
 #### API Setting
 
-- server start:
-
 ```bash
 $ git clone https://github.com/dramancompany/memoapp-api.git <project-name>
 
 $ cd <project-name>
 
-$ npm install
+$ npm install // package install
 
-$ PORT=3000 npm start
+$ PORT=3000 npm start // server start
 ```
 
 ### Web project Setting
@@ -55,9 +53,9 @@ $ git clone https://github.com/ace9809/remember-memo-app.git <project-name>
 
 $ cd <project-name>
 
-$ npm install
+$ npm install // package install
 
-$ npm start
+$ npm start // start app
 ```
 
 ## TODO (개선 사항)
