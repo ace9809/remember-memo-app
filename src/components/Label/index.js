@@ -34,9 +34,9 @@ const Label = props => {
 
 Label.propTypes = {
   title: PropTypes.string,
-  memos: PropTypes.string,
+  id: PropTypes.string,
   currentLabel: PropTypes.object,
-  memos: PropTypes.object,
+  memos: PropTypes.array,
 };
 
 export default Label;
