@@ -70,4 +70,5 @@ $ npm start # start app
 - [ ] 버그 수정(지속적)
 - [ ] 환경 별로 host file 만들기
 - [ ] NotFound 페이지 만들기
+- [ ] ie 완벽 대응
 
