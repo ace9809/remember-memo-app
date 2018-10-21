@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getCurrentLabel } from '../../actions';
@@ -39,26 +39,27 @@ class App extends Component {
   render() {
     return (
       <Router>
-          <Wrapper>
-            <Header />
-            <ContentWrapper>
-              <LableListWrapper>
-                <LabelTab />
-              </LableListWrapper>
-              <LabelInfoTabWrapper>
-                <Route
-                  path="/:id"
-                  component={LabelInfoTab}
-                />
-              </LabelInfoTabWrapper>
-              <MemoWrapper>
-                <Route
-                  path={`/${this.props.currentLabel}/:id`}
-                  component={MemoTab}
-                />
-              </MemoWrapper>
-            </ContentWrapper>
-          </Wrapper>
+        <Wrapper>
+          <Header />
+          <ContentWrapper>
+            <LableListWrapper>
+              <LabelTab />
+            </LableListWrapper>
+            <LabelInfoTabWrapper>
+              <Route exact path="/" component={() => <Redirect to="/all" />} />
+              <Route
+                path="/:id"
+                component={LabelInfoTab}
+              />
+            </LabelInfoTabWrapper>
+            <MemoWrapper>
+              <Route
+                path={`/${this.props.currentLabel}/:id`}
+                component={MemoTab}
+              />
+            </MemoWrapper>
+          </ContentWrapper>
+        </Wrapper>
       </Router>
     );
   }

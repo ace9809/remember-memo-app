@@ -1,3 +1,4 @@
+
 const initialState = {
   memos: [],
   memo: {}
@@ -8,13 +9,13 @@ const memos = (state = initialState, action) => {
     case 'GET_MEMOS_SUCCESS':
       return {
         ...state,
-        memos: action.payload
+        memos: action.payload,
       };
 
     case 'ADD_MEMO_SUCCESS':
       return {
         ...state,
-        memos: [...state.memos, action.payload]
+        memos: [action.payload, ...state.memos]
       };
 
     case 'GET_MEMO_SUCCESS':

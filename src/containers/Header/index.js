@@ -110,7 +110,7 @@ class Header extends Component {
 
   addMemoOnClick = () => {
     this.props.addMemo();
-    this.props.history.push('/all');
+    alert('메모가 전체 라벨에 추가 되었습니다.');
   };
 
   addLabelOpenModal = () => {
@@ -128,7 +128,7 @@ class Header extends Component {
   addLabelOnClick = () => {
     this.props.addLabel(this.state.value);
     this.setState({value: ''});
-    this.closeModal();
+    this.addLabelCloseModal();
   };
 
   render() {
