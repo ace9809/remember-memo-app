@@ -188,7 +188,7 @@ class LabelInfoTab extends Component {
   };
 
   removeLabelMemoOnClick = (id) => {
-    this.props.removeLabelMemo(id, this.props.checkedMemos);
+    this.props.removeLabelMemo(id, this.props.checkedMemos, true);
     this.closeMoveMemoModal();
   };
 
