@@ -13,7 +13,7 @@
 - 라벨 이름 변경
 
 
-- Library
+## Library
   - react: react를 쓰기 위해 사용
   - react-dom: dom에 react를 보여주기 위해 사용
   - react-router-dom: 라우팅을 하기 위해 사용
