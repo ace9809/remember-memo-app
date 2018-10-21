@@ -38,11 +38,11 @@ export const updateLabel = (id, title) => dispatch => {
   return axios.put(`http://114.207.113.7:18888/labels/${id}`, {
     title : title
   }).then(res => {
-      dispatch(updateLabelSuccess(res.data));
-    }).catch(error => {
-      dispatch(apiFailure(error));
-      throw error;
-    })
+    dispatch(updateLabelSuccess(res.data));
+  }).catch(error => {
+    dispatch(apiFailure(error));
+    throw error;
+  })
 };
 
 export const deleteLabel = id => dispatch => {
@@ -63,11 +63,11 @@ export const removeLabelMemo = (labelId, removeMemos) => (dispatch, getState) =>
   return axios.delete(`http://114.207.113.7:18888/labels/${labelId}/memos`, {
     data: { memoIds: removeMemos}
   }).then(res => {
-      dispatch(removeLabelMemoSuccess(res.data));
-    }).catch(error => {
-      dispatch(apiFailure(error));
-      throw error;
-    })
+    dispatch(removeLabelMemoSuccess(res.data));
+  }).catch(error => {
+    dispatch(apiFailure(error));
+    throw error;
+  })
 };
 
 export const getMemos = () => dispatch => {
@@ -141,9 +141,11 @@ export const updateMemo = (id, params, currentLabel) => dispatch => {
 };
 
 export const checkedMemos = (Memo, checked) => dispatch => {
-  if (checked) {
-    dispatch(checkedMemosSuccess(Memo._id))
-  }
+  dispatch(checkedMemosSuccess(Memo._id));
+};
+
+export const unCheckedMemos = (Memo, checked) => dispatch => {
+  dispatch(unCheckedMemosSuccess(Memo._id));
 };
 
 export const addLabelMemo = (id, addMemos) => (dispatch, getState) => {
@@ -261,6 +263,11 @@ const updateLabelMemoSuccess = data => ({
 
 const checkedMemosSuccess = data => ({
   type: 'CHECKED_MEMOS_SUCCESS',
+  payload: data
+});
+
+const unCheckedMemosSuccess = data => ({
+  type: 'UNCHECKED_MEMOS_SUCCESS',
   payload: data
 });
 

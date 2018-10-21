@@ -103,6 +103,12 @@ const labels = (state = initialState, action) => {
         checkedMemos: [...state.checkedMemos, action.payload]
       };
 
+    case 'UNCHECKED_MEMOS_SUCCESS':
+      return {
+        ...state,
+        checkedMemos: state.checkedMemos.filter(id => id !== action.payload),
+      };
+
     default:
       return state;
   }

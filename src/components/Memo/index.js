@@ -8,7 +8,7 @@ import 'moment-timezone';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
-import { checkedMemos } from '../../actions';
+import { checkedMemos, unCheckedMemos } from '../../actions';
 
 const Wrapper = styled.div`
   height: 160px;
@@ -68,7 +68,10 @@ class Memo extends Component {
 
   checkboxOnChange = () => {
     this.setState({checked: !this.state.checked});
-    this.props.checkedMemos(this.props.memo, !this.state.checked);
+    if (!this.state.checked)
+      this.props.checkedMemos(this.props.memo, this.state.checked);
+    else
+      this.props.unCheckedMemos(this.props.memo, this.state.checked);
   };
 
   render () {
@@ -107,7 +110,9 @@ class Memo extends Component {
 }
 
 Memo.propTypes = {
-  memo: PropTypes.object
+  memo: PropTypes.object,
+  checkedMemos: PropTypes.func,
+  unCheckedMemos: PropTypes.func
 };
 
-export default connect(null, { checkedMemos })(Memo);
+export default connect(null, { checkedMemos, unCheckedMemos })(Memo);
