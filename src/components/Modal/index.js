@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import PropTypes from 'prop-types';
 
 const customStyles = {
   content: {
@@ -39,5 +40,11 @@ class Modal extends Component {
     )
   }
 }
+
+Modal.propTypes = {
+  open: PropTypes.bool,
+  closeModal: PropTypes.func,
+  currentLabel: PropTypes.object,
+};
 
 export default Modal;

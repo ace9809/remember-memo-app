@@ -6,6 +6,7 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import 'moment-timezone';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { checkedMemos } from '../../actions';
 
@@ -104,5 +105,9 @@ class Memo extends Component {
     )
   }
 }
+
+Memo.propTypes = {
+  memo: PropTypes.object
+};
 
 export default connect(null, { checkedMemos })(Memo);

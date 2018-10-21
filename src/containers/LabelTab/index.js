@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { getLabels, getMemos } from '../../actions';
 import LabelList from '../../components/LabelList'
 
@@ -31,6 +32,14 @@ class LabelTab extends Component {
     );
   }
 }
+
+LabelTab.propTypes = {
+  memos: PropTypes.array,
+  labels: PropTypes.array,
+  currentLabel: PropTypes.object,
+  getLabels: PropTypes.func,
+  getMemos: PropTypes.func,
+};
 
 function mapStateToProps(state) {
   return {

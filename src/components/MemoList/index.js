@@ -6,6 +6,7 @@
  */
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Memo from '../Memo';
 
 const Wrapper = styled.div`
@@ -53,5 +54,10 @@ class MemoList extends Component {
     )
   }
 }
+
+MemoList.propTypes = {
+  memos: PropTypes.array,
+  currentLabel: PropTypes.object,
+};
 
 export default MemoList;

@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addLabel, addMemo } from '../../actions';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { FaEdit, FaTags } from 'react-icons/fa'
 import HeaderLogo from '../../assets/headerLogo.png';
 import Modal from '../../components/Modal';
@@ -175,5 +176,10 @@ class Header extends Component {
     )
   }
 }
+
+Header.propTypes = {
+  addLabel: PropTypes.func,
+  addMemo: PropTypes.func
+};
 
 export default connect(null, { addLabel, addMemo })(Header);

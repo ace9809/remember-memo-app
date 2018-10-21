@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { getMemo, deleteMemo, removeLabelMemo, updateMemo } from '../../actions';
 
@@ -146,6 +147,13 @@ class MemoTab extends Component {
     )
   }
 }
+
+MemoTab.propTypes = {
+  getMemo: PropTypes.func,
+  deletMemo: PropTypes.func,
+  updateMemo: PropTypes.func,
+  removeLabelMemo: PropTypes.func
+};
 
 function mapStateToProps(state) {
   return {

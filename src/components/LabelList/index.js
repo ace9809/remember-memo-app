@@ -80,11 +80,7 @@ class LabelList extends Component {
 LabelList.propTypes = {
   memos: PropTypes.array,
   labels: PropTypes.array,
-};
-
-LabelList.defaultProps = {
-  memos: [],
-  labels: [],
+  currentLabel: PropTypes.object,
 };
 
 export default LabelList;

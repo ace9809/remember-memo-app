@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import MemoList from '../../components/MemoList';
 import { getMemos, getLabel, deleteLabel, updateLabel, getCurrentLabel, addLabelMemo, removeLabelMemo} from '../../actions';
 import Modal from '../../components/Modal';
@@ -322,6 +323,21 @@ class LabelInfoTab extends Component {
     )
   }
 }
+
+LabelInfoTab.propTypes = {
+  match: PropTypes.object,
+  labels: PropTypes.array,
+  label: PropTypes.object,
+  currentLabel: PropTypes.object,
+  memos: PropTypes.array,
+  getMemos: PropTypes.func,
+  getLabel: PropTypes.func,
+  deleteLabel: PropTypes.func,
+  updateLabel: PropTypes.func,
+  getCurrentLabel: PropTypes.func,
+  addLabelMemo: PropTypes.func,
+  removeLabelMemo: PropTypes.func
+};
 
 function mapStateToProps(state) {
   return {

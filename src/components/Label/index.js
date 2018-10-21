@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   width: 200px;
@@ -29,6 +30,13 @@ const Label = props => {
       {title} ({memos.length})
     </Wrapper>
   )
-}
+};
+
+Label.propTypes = {
+  title: PropTypes.string,
+  memos: PropTypes.string,
+  currentLabel: PropTypes.object,
+  memos: PropTypes.object,
+};
 
 export default Label;

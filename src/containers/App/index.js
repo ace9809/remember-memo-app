@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getCurrentLabel } from '../../actions';
 import Header from '../../containers/Header';
 import LabelTab from '../../containers/LabelTab';
@@ -62,6 +63,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  currentLabel: PropTypes.object,
+  getCurrntLabel: PropTypes.func
+};
 
 function mapStateToProps(state) {
   return {
