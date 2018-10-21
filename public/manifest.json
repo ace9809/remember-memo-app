@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "리멤버 메모 앱",
+  "name": "리멤버 메모 앱",
   "icons": [
     {
       "src": "favicon.ico",
