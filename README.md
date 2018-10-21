@@ -28,6 +28,10 @@
   - styled-components: 전반적인 스타일링을 하기 위해 사용
   - prop-types: props의 타입을 체크하기 위해 사용
 
+## 프로젝트 구조
+
+- [구조](./STRUCTURE.md)
+
 ## Getting started(MongoDB가 설치되어 있어야 함)
 
 #### API Setting
