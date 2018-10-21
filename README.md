@@ -1,6 +1,6 @@
 # Remember Memo App
 
-> Redux로 만든 메모 앱
+> Redux를 사용하여 개발한 라벨 기능이 있는 메모 앱 (에버노트 디자인 참조)
 
 ## Features
 

@@ -25,6 +25,7 @@
 - 전체 라벨: 라벨 지정. 그 외 라벨: 라벨 삭제, 라벨 지정 해제, 라벨 이름 수정.
 - 해당 라벨에 속한 메모리스트를 보여준다.
 - mapStateToProps로 리덕스 state를 props로 받아서 쓸 수 있다.
+- getDerivedStateFromProps를 받아온 props로 현재 라우트를 참조 후 all이 아닐 경우에 라벨을 가져온다.
 
 ### LabelTab Container
 
@@ -39,7 +40,7 @@
 - lodash의 debounce를 사용하여 메모를 작성,수정 후 1초후에 자동 저장한다.
 - mapStateToProps로 리덕스 state를 props로 받아서 쓸 수 있다.
 - 메모를 삭제후 전체 라벨로 redirect 시켜준다.
-- getDerivedStateFromProps를 props가 달라질 때마다 메모를 찾은 후 setState해준다.
+- getDerivedStateFromProps를 받아온 props로 메모를 찾은 후 setState해준다.
 
 ## Component
 
