@@ -24,7 +24,7 @@ export const getLabels = () => dispatch => {
     })
 };
 
-export const getLabel = (id) => dispatch => {
+export const getLabel = id => dispatch => {
   return axios.get(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
       dispatch(getLabelSuccess(res.data));
@@ -45,7 +45,7 @@ export const updateLabel = (id, title) => dispatch => {
     })
 };
 
-export const deleteLabel = (id) => dispatch => {
+export const deleteLabel = id => dispatch => {
   return axios.delete(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
       dispatch(deleteLabelSuccess(res.data));
@@ -88,7 +88,7 @@ export const addMemo = () => dispatch => {
   })
 };
 
-export const getMemo = (id) => dispatch => {
+export const getMemo = id => dispatch => {
   return axios.get(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
       dispatch(getMemoSuccess(res.data));
@@ -98,7 +98,7 @@ export const getMemo = (id) => dispatch => {
     })
 };
 
-export const deleteMemo = (id) => dispatch => {
+export const deleteMemo = id => dispatch => {
   return axios.delete(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
       dispatch(deleteMemoSuccess(res.data));

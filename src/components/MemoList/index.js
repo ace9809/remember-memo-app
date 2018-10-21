@@ -40,11 +40,11 @@ class MemoList extends Component {
     return (
       <Wrapper>
         {
-          memos.map((memo, index) => {
+          memos.map(memo => {
             return(
                 <Memo
                   memo={memo}
-                  key={index}
+                  key={memo._id}
                   currentLabel={currentLabel}
                 />
             )
