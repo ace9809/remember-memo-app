@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import 'react-app-polyfill/ie9';
+import 'moment-timezone';
 import reducers from './reducers';
 import './index.css';
 import App from './containers/App';

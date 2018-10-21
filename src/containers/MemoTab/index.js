@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { getMemo, deleteMemo, removeLabelMemo, updateMemo } from '../../actions';
@@ -22,12 +23,20 @@ const TitleWrapper = styled.div`
   display: flex;
 `;
 
+const UpdatedWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 40px 25px;
+  color: #A2A4A5;
+  font-weight: 10px;
+`;
+
 const EditorWrapper = styled.div`
-  padding: 40px 25px;
+  padding: 0 25px 0 25px;
 `;
 
 const TitleInput = styled.input`
-  margin: 40px 25px;
+  margin: 10px 25px;
   width: 100%;
   display: block;
   border: none;
@@ -65,7 +74,8 @@ class MemoTab extends Component {
       id: '',
       title: '',
       content: '',
-      edit: false
+      edit: false,
+      updatedAt: ''
     }
   }
 
@@ -76,7 +86,8 @@ class MemoTab extends Component {
         if (!state.edit) {
           return {
             title: memo.title,
-            content: memo.content
+            content: memo.content,
+            updatedAt: memo.updatedAt
           };
         }
       }
@@ -137,6 +148,11 @@ class MemoTab extends Component {
             onChange={this.titleOnChange}
           />
         </TitleWrapper>
+        <UpdatedWrapper>
+          <Moment format="YYYY.MM.DD">
+            {this.state.updatedAt}
+          </Moment>
+        </UpdatedWrapper>
         <EditorWrapper>
           <TextArea
             value={this.state.content}

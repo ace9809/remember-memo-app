@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
-import 'moment-timezone';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
