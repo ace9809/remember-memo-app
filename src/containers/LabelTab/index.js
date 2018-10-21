@@ -15,6 +15,7 @@ const LabelWrapper = styled.div`
 
 class LabelTab extends Component {
   componentDidMount() {
+    //mount될 때 getLabels와 getMemos를 dispatch하여 state의 라벨 리스트와 메모 리스트를 업데이트 해준다.
     this.props.getLabels();
     this.props.getMemos();
   }
@@ -41,6 +42,7 @@ LabelTab.propTypes = {
   getMemos: PropTypes.func,
 };
 
+//reducer의 state를 props로 바꿔준다.
 function mapStateToProps(state) {
   return {
     labels: state.labels.labels,

@@ -3,6 +3,7 @@
  */
 import axios from 'axios';
 
+//라벨을 추가하는 액션
 export const addLabel = title => dispatch => {
   return axios.post(`http://114.207.113.7:18888/labels`, {
     title : title
@@ -14,6 +15,7 @@ export const addLabel = title => dispatch => {
   })
 };
 
+//라벨들을 가져오는 액션
 export const getLabels = () => dispatch => {
   return axios.get(`http://114.207.113.7:18888/labels`)
     .then(res => {
@@ -24,6 +26,7 @@ export const getLabels = () => dispatch => {
     })
 };
 
+//라벨리스트를 가져오는 액션
 export const getLabel = id => dispatch => {
   return axios.get(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
@@ -34,6 +37,7 @@ export const getLabel = id => dispatch => {
     })
 };
 
+//라벨을 수정하는 액션
 export const updateLabel = (id, title) => dispatch => {
   return axios.put(`http://114.207.113.7:18888/labels/${id}`, {
     title : title
@@ -45,6 +49,7 @@ export const updateLabel = (id, title) => dispatch => {
   })
 };
 
+//라벨을 삭제하는 액션
 export const deleteLabel = id => dispatch => {
   return axios.delete(`http://114.207.113.7:18888/labels/${id}`)
     .then(res => {
@@ -55,6 +60,7 @@ export const deleteLabel = id => dispatch => {
     })
 };
 
+//라벨에 속해있는 메모를 해제하도록 함
 export const removeLabelMemo = (labelId, removeMemos, removeModal) => (dispatch, getState) => {
   const state = getState();
   if (state.labels.checkedMemos.length === 0 && removeModal) {
@@ -70,6 +76,7 @@ export const removeLabelMemo = (labelId, removeMemos, removeModal) => (dispatch,
   })
 };
 
+//메모리스트를 가져오는 액션
 export const getMemos = () => dispatch => {
   return axios.get(`http://114.207.113.7:18888/memos`)
     .then(res => {
@@ -80,6 +87,7 @@ export const getMemos = () => dispatch => {
     })
 };
 
+//메모를 추가하는 액션
 export const addMemo = () => dispatch => {
   return axios.post(`http://114.207.113.7:18888/memos`, {
     title: 'New Memo',
@@ -92,6 +100,7 @@ export const addMemo = () => dispatch => {
   })
 };
 
+//메모를 가져오는 액션
 export const getMemo = id => dispatch => {
   return axios.get(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
@@ -102,11 +111,13 @@ export const getMemo = id => dispatch => {
     })
 };
 
+//메모를 삭제하는 액션
 export const deleteMemo = id => (dispatch, getState) => {
   const state = getState();
   let deleteLabelMemoLabels;
   return axios.delete(`http://114.207.113.7:18888/memos/${id}`)
     .then(res => {
+      //현재 속해 있는 메모가 라벨에 포함되어 있을 시 해당 라벨을 업데이트 해주기 위해 삭제된 메모가 속해 있는 라벨을 리턴한뒤 dispatch 해줌
       deleteLabelMemoLabels = state.labels.labels.map(
         (label) => {
           label.memos.map(memo => {
@@ -125,6 +136,7 @@ export const deleteMemo = id => (dispatch, getState) => {
     })
 };
 
+//메모를 수정하는 액션
 export const updateMemo = (id, params, currentLabel) => dispatch => {
   return axios.put(`http://114.207.113.7:18888/memos/${id}`, {
     title : params.title,
@@ -132,6 +144,7 @@ export const updateMemo = (id, params, currentLabel) => dispatch => {
   }).then(res => {
     dispatch(updateMemoSuccess(res.data));
     if (currentLabel !== 'all') {
+      //현재라벨이 all이 아닐경우 label의 memos에도 업데이트를 해주기 위해 한번 더 dispatch 해줌
       dispatch(updateLabelMemoSuccess(res.data));
     }
   }).catch(error => {
@@ -140,14 +153,17 @@ export const updateMemo = (id, params, currentLabel) => dispatch => {
   })
 };
 
+//메모 체크 액션
 export const checkedMemos = (Memo, checked) => dispatch => {
   dispatch(checkedMemosSuccess(Memo._id));
 };
 
+//메모 체크 해제 액션
 export const unCheckedMemos = (Memo, checked) => dispatch => {
   dispatch(unCheckedMemosSuccess(Memo._id));
 };
 
+//메모에 라벨 지정해주는 액션
 export const addLabelMemo = (id, addMemos) => (dispatch, getState) => {
   const state = getState();
   if (state.labels.checkedMemos.length === 0) {

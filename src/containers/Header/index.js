@@ -109,15 +109,18 @@ class Header extends Component {
   }
 
   addMemoOnClick = () => {
+    // 메모 추가 버튼 클릭시 addMemo를 dispatch해주면 메모가 추가 된다.
     this.props.addMemo();
     alert('메모가 전체 라벨에 추가 되었습니다.');
   };
 
   addLabelOpenModal = () => {
+    // 라벨 추가 모달 여는 함수
     this.setState({modalIsOpen: true});
   };
 
   addLabelCloseModal = () => {
+    // 라벨 추가 모달 닫는 함수
     this.setState({modalIsOpen: false});
   };
 
@@ -126,6 +129,7 @@ class Header extends Component {
   };
 
   addLabelOnClick = () => {
+    // 모달에 작성하기 버튼 클릭시 addLabel을 dispatch해주면 라벨이 추가 된다.
     this.props.addLabel(this.state.value);
     this.setState({value: ''});
     this.addLabelCloseModal();

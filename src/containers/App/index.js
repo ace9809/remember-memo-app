@@ -70,6 +70,7 @@ App.propTypes = {
   getCurrntLabel: PropTypes.func
 };
 
+//reducer의 state를 props로 바꿔준다.
 function mapStateToProps(state) {
   return {
     currentLabel: state.labels.currentLabel

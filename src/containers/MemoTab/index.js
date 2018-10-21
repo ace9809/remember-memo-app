@@ -81,9 +81,11 @@ class MemoTab extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.memos.length !== 0) {
+      //메모 리스트에서 메모를 가져온다.
       const memo = props.memos.filter(memo => memo._id === props.match.params.id)[0];
       if (memo) {
         if (!state.edit) {
+          //메모가 수정중이 아닐 때는 state를 변경하지 않도록 한다.
           return {
             title: memo.title,
             content: memo.content,
@@ -114,10 +116,13 @@ class MemoTab extends Component {
   };
 
   deleteMemoOnClick = () => {
+    // 메모를 삭제하기 위해 deleteMemo를 dispatch하여 메모를 삭제한다.
     this.props.deleteMemo(this.props.match.params.id);
     if (this.props.currentLabel === 'all') {
+      // 라벨이 all일 경우엔 all로 라우트를 바꿔준다.
       this.props.history.push('/all');
     } else {
+      // 라벨이 all이 아닐 경우에는 메모 삭제 후 현재 라벨에 포함되어있던 삭제된 메모도 제거 해준 뒤 해당 라벨로 route를 바꿔준다.
       this.props.removeLabelMemo(this.props.currentLabel, [this.props.match.params.id]);
       this.props.history.push(`/${this.props.currentLabel}`);
     }
@@ -125,6 +130,7 @@ class MemoTab extends Component {
   };
 
   updateMemo = () => {
+    //라벨을 수정 후 updateMemo를 dispatch하여 메모를 수정 해준다.
     this.props.updateMemo(this.props.match.params.id, {'title': this.state.title, 'content': this.state.content}, this.props.currentLabel)
     this.setState({
       edit: false
@@ -171,6 +177,7 @@ MemoTab.propTypes = {
   removeLabelMemo: PropTypes.func
 };
 
+//reducer의 state를 props로 바꿔준다.
 function mapStateToProps(state) {
   return {
     currentLabel: state.labels.currentLabel,

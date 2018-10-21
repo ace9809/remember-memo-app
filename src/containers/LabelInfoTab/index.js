@@ -138,9 +138,11 @@ class LabelInfoTab extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    //현재 라벨을 가져오기 위해 getCurrentLabeld을 dispatch 한다.
     props.getCurrentLabel(props.match.params.id);
     if (state.id !== props.match.params.id) {
       if (props.match.params.id !== 'all') {
+        //라벨이 all이 아닌 경우에는 라벨을 가져와 라벨의 정보를 보여줘야 하므로 getLabel을 dispatch해준다.
         props.getLabel(props.match.params.id);
       }
     }
@@ -151,46 +153,59 @@ class LabelInfoTab extends Component {
   }
 
   openChangeLabelModal = () => {
+    // 라벨 이름변경 모달 여는 함수
     this.setState({changeLabelModalIsOpen: true});
   };
 
   closeChangeLabelModal = () => {
+    // 라벨 이름변경 모달 닫는 함수
     this.setState({changeLabelModalIsOpen: false});
   };
 
   openMoveMemoModal = () => {
+    // 라벨 지정 모달 여는 함수
     this.setState({moveMemoModalIsOpen: true});
   };
 
   closeMoveMemoModal = () => {
+    // 라벨 지정 모달 닫는 함수
     this.setState({moveMemoModalIsOpen: false});
   };
 
 
   updateLabelOnChange = (event) => {
+    // 라벨의 이름 onChange 메소드를 통하여 setState 해주는 함수
     this.setState({value: event.target.value});
   };
 
   updateLabelOnClick = () => {
+    // 라벨 이름 변경 모달에서 변경하기 클릭시 updateLabel을 dispatch하여 라벨의 이름을 변경한다.
     this.props.updateLabel(this.props.match.params.id, this.state.value);
+    // 라벨 이름 변경 후 모달의 input 값을 공백으로 바꿔준다.
     this.setState({value: ''});
+    // 모달을 닫는다.
     this.closeChangeLabelModal();
   };
 
   deleteLabel = () => {
+    // 라벨 삭제하기 클릭시 deleteLabel을 dispatch하여 라벨을 삭제한다.
     this.props.deleteLabel(this.props.label._id);
+    //전체 페이지로 route를 바꿔준다.
     this.props.history.push('/all');
   };
 
   addLabelMemoOnClick = (id) => {
+    // 라벨 추가하기 클릭시 addLabelMemo을 dispatch하여 라벨을 추가한다.
     this.props.addLabelMemo(id, this.props.checkedMemos);
+    // 해당 라벨로 route를 바꿔준다.
     this.props.history.push(`/${id}`);
+    // 모달을 닫는다.
     this.closeMoveMemoModal();
   };
 
   removeLabelMemoOnClick = (id) => {
+    // state에서 현재 체크된 메모를 가져오 removeLabelMemo를 dispatch하여 체크된 메모를 라벨에서 지정해제 해준다.
     this.props.removeLabelMemo(id, this.props.checkedMemos, true);
-    this.closeMoveMemoModal();
   };
 
   render() {
@@ -340,6 +355,7 @@ LabelInfoTab.propTypes = {
   removeLabelMemo: PropTypes.func
 };
 
+//reducer의 state를 props로 바꿔준다.
 function mapStateToProps(state) {
   return {
     labels: state.labels.labels,
