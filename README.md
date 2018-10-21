@@ -71,4 +71,5 @@ $ npm start # start app
 - [ ] 환경 별로 host file 만들기
 - [ ] NotFound 페이지 만들기
 - [ ] ie 완벽 대응
+- [ ] 메모의 checkbox 영역때문에 Link가 잘 선택이 안되는 문제 수정
 
