@@ -6,7 +6,7 @@
 
 - 메모 추가 및 삭제
 - 메모 자동 저장
-- 메모에 라벨 지정
+- 메모에 라벨 지정 / 해제(다중 선택 가능)
 - 메모에 내용을 볼 수 있다.
 - 라벨에 속한 메모를 볼 수 있다.
 - 라벨 추가 및 삭제
@@ -35,7 +35,7 @@
 
 ## Getting started(MongoDB가 설치되어 있어야 함)
 
-#### API Setting
+### API project Setting
 
 ```bash
 $ git clone https://github.com/dramancompany/memoapp-api.git <project-name>
