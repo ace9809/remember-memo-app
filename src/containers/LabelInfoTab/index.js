@@ -345,7 +345,7 @@ function mapStateToProps(state) {
     label: state.labels.label,
     currentLabel: state.labels.currentLabel,
     memos: state.memos.memos,
-    checkedMemos: state.memos.checkedMemos
+    checkedMemos: state.labels.checkedMemos
   }
 }
 

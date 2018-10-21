@@ -5,7 +5,8 @@
 const initialState = {
   labels: [],
   label: {},
-  currentLabel: 'all'
+  currentLabel: 'all',
+  checkedMemos: []
 };
 
 const labels = (state = initialState, action) => {
@@ -72,7 +73,8 @@ const labels = (state = initialState, action) => {
         labels: state.labels.map(
           (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
             : label
-        )
+        ),
+        checkedMemos: []
       };
 
     case 'ADD_LABEL_MEMO_SUCCESS':
@@ -81,7 +83,8 @@ const labels = (state = initialState, action) => {
         labels: state.labels.map(
           (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
             : label
-        )
+        ),
+        checkedMemos: []
       };
 
     case 'DELETE_LABEL_MEMO_SUCCESS':
@@ -92,6 +95,12 @@ const labels = (state = initialState, action) => {
           (label, i) => label._id === action.payload._id ? {...label, ...action.payload}
             : label
         )
+      };
+
+    case 'CHECKED_MEMOS_SUCCESS':
+      return {
+        ...state,
+        checkedMemos: [...state.checkedMemos, action.payload]
       };
 
   }

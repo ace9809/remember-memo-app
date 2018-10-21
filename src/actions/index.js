@@ -55,7 +55,11 @@ export const deleteLabel = id => dispatch => {
     })
 };
 
-export const removeLabelMemo = (labelId, removeMemos) => dispatch => {
+export const removeLabelMemo = (labelId, removeMemos) => (dispatch, getState) => {
+  const state = getState();
+  if (state.labels.checkedMemos.length === 0) {
+    alert('체크한 메모가 없습니다');
+  }
   return axios.delete(`http://114.207.113.7:18888/labels/${labelId}/memos`, {
     data: { memoIds: removeMemos}
   }).then(res => {

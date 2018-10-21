@@ -1,7 +1,6 @@
 const initialState = {
   memos: [],
-  memo: {},
-  checkedMemos: []
+  memo: {}
 };
 
 const memos = (state = initialState, action) => {
@@ -38,12 +37,6 @@ const memos = (state = initialState, action) => {
           (memo, i) => memo._id === action.payload._id ? {...memo, ...action.payload}
             : memo
         )
-      };
-
-    case 'CHECKED_MEMOS_SUCCESS':
-      return {
-        ...state,
-        checkedMemos: [...state.checkedMemos, action.payload]
       };
   }
   return state;
